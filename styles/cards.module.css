@@ -1,0 +1,79 @@
+.conteiner{
+   display: flex;
+   flex-wrap: nowrap;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   width: 100vw;
+   min-height: 100vh;
+   height: auto;
+   background-color: var(--cor-02);
+}
+.list_cards{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.card{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    margin: 5px;
+    background-color: var(--cor-01);
+    border-radius: 5px;
+    height: 300px;
+    width: 200px;
+    justify-content: flex-start;
+    align-items: center;
+}
+.image{
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.h6{
+    width: 96%;
+    text-align: center;
+    background-color: rgba(255,255,255,.8);
+    margin-top: -20px;
+    z-index: 1;
+}
+.category{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #7a8eb9;
+	background:linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
+	background-color:#637aad;
+	border:1px solid #314179;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+    margin: 1px;
+    width: 100%;
+    height: 50px;
+   
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #5972a7 5%, #637aad 100%);
+	background-color:#5972a7;
+  
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
