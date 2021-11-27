@@ -1,20 +1,19 @@
-import style from '../styles/Last_view.module.css'
-function Last_view({ filme }) {
+import style from "../styles/Last_view.module.css";
+function Last_view({ filmes }) {
+  console.log(filmes.length);
   return (
     <div>
       <section
-      className={style.background}
+        className={style.background}
         style={{
-          height: "70vh",
-          backgroundImage: `url(${filme.backdrop_path})`,
-          width:'100vw',
-          objectFit:'cover',
-          backgroundPosition: 'center'
+          backgroundImage: `url(${
+            filmes[Math.floor(Math.random() * filmes.length)].backdrop_path
+          })`,
         }}
       >
-          <div className={style.Vertical}>
-
-          </div>
+        <div className={style.Vertical}>
+          <div className={style.horizontal}></div>
+        </div>
       </section>
     </div>
   );

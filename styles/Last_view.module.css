@@ -1,6 +1,20 @@
+.background{
+    height: 80vh;
+    width:100vw;
+    object-fit:fill;
+    background-size: cover;
+    background-position: 50% 15%;
+    margin-bottom: -70px;
+    margin-top: -70px;
+}
 
-.featured--Vertical{
+.Vertical{
     width: inherit;
     height: inherit;
-    background: linear-gradient(to top, #111 10%, transparent 90%);
+    background: linear-gradient(to top, var(--cor-02) 10%, transparent 90%);
+}
+.horizontal{
+    width: inherit;
+    height: inherit;
+    background: linear-gradient(to right, var(--cor-02) 0%, transparent 0%);
 }

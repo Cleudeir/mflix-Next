@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Search_movies from "../../components/Search_movies";
-import Card from "../../components/card";
+import Cards from "../../components/Cards";
 import styles from "../../styles/cards.module.css";
-import Last_view from "../../components/Last_View";
+import Last_view from "../../components/Last_view";
 
 const Movies = () => {
   const [movie_genre, set_movie_genre] = useState(false);
@@ -33,7 +33,7 @@ const Movies = () => {
     }
   }, []);
 
-  console.log({movie_genre,genres,movie,movie_find});
+  console.log({ movie_genre, genres, movie, movie_find });
 
   const find = (e) => {
     let a = e;
@@ -48,9 +48,8 @@ const Movies = () => {
   };
 
   return (
-    <div className={styles.conteiner}>
-     { movie && <Last_view filme={movie[0]}/>}
-      <div style={{ display: "flex" }}>
+    <>
+      <div style={{ display: "flex",backgroundColor:'var(--cor-02)',justifyContent:'flex-start'}}>
         <input
           className={styles.myButton}
           type="text"
@@ -78,9 +77,12 @@ const Movies = () => {
           </div>
         }
       </div>
-      {movie_genre && Card(movie_find)}
-      {movie_genre && !movie_find && Card(movie_genre[render_genre])}
-    </div>
+      <div className={styles.conteiner}>
+        {movie_genre && <Last_view filmes={movie_genre[render_genre]}  />}
+        {movie_genre && Cards(movie_find)}
+        {movie_genre && !movie_find && Cards(movie_genre[render_genre])}
+      </div>
+    </>
   );
 };
 
