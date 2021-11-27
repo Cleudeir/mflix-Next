@@ -5,9 +5,7 @@ export default async function handler(req, res) {
   const API_KEY = "5417af578f487448df0d4932bc0cc1a5";
   const API_BASE = "https://api.themoviedb.org/3";
 
-  let search = await fetch(
-    `${API_BASE}/movie/${id}?api_key=${API_KEY}`
-  )
+  let search = await fetch(`${API_BASE}/movie/${id}?api_key=${API_KEY}`)
     .then((response) => response.json())
     .then((data) => data)
     .catch(() => null);
@@ -22,16 +20,16 @@ export default async function handler(req, res) {
 
     search.poster_path = "https://image.tmdb.org/t/p/w342" + search.poster_path;
 
-    if (search.genres[0] && search.genres[0].name != "Thriller") {
+    if (search.genres[0]) {
       search.genres = await search.genres[0].name;
     } else {
-      if (search.genres[1] && search.genres[1].name != "Thriller") {
+      if (search.genres[1]) {
         search.genres = await search.genres[1].name;
       } else {
-        if (search.genres[2] && search.genres[2].name != "Thriller") {
+        if (search.genres[2]) {
           search.genres = await search.genres[2].name;
         } else {
-          search.genres = "Suspense";
+          search.genres = "Others";
         }
       }
     }

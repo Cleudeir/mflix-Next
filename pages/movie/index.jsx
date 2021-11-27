@@ -21,18 +21,21 @@ const Movies = () => {
     set_movie(result.movie);
     set_genres(result.genres);
     set_movie_genre(result.movie_genres);
+    set_render_genre(Math.floor(Math.random()*15))
   };
 
   useEffect(() => {
+    
     if (localStorage.getItem("movie_genre")) {
       set_genres(JSON.parse(localStorage.getItem("genres")));
       set_movie_genre(JSON.parse(localStorage.getItem("movie_genre")));
       set_movie(JSON.parse(localStorage.getItem("movie")));
+      set_render_genre(Math.floor(Math.random()*15))
     } else {
       search();
     }
   }, []);
-
+ 
   console.log({ movie_genre, genres, movie, movie_find });
 
   const find = (e) => {
@@ -61,6 +64,7 @@ const Movies = () => {
           <div className={styles.category}>
             <select
               name="select"
+              value={render_genre}
               className={styles.myButton}
               onChange={(e) => {
                 find("");
@@ -69,7 +73,7 @@ const Movies = () => {
             >
               {genres &&
                 genres.map((x, i) => (
-                  <option key={i} value={i}>
+                  <option key={i} value={i} >
                     {x}
                   </option>
                 ))}

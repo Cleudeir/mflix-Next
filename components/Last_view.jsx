@@ -1,6 +1,5 @@
 import style from "../styles/Last_view.module.css";
 function Last_view({ filmes }) {
-  console.log(filmes.length);
   return (
     <div>
       <section
