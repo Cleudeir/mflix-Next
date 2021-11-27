@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   const API_BASE = "https://api.themoviedb.org/3";
 
   let search = await fetch(
-    `${API_BASE}/movie/${id}?api_key=${API_KEY}&language=pt-BR`
+    `${API_BASE}/movie/${id}?api_key=${API_KEY}`
   )
     .then((response) => response.json())
     .then((data) => data)
