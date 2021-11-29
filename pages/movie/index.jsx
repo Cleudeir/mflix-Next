@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Search from "../../components/movie/Search";
 import Cards from "../../components/Cards";
 import styles from "../../styles/cards.module.css";
-import Last_view from "../../components/Last_view";
+import Last_view from '../../components/Last_view'
 import Header_buttons from "../../components/Header_buttons";
 
 const Movies = () => {
