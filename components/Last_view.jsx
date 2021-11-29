@@ -1,4 +1,4 @@
-import style from "../styles/Last_view.module.css";
+import style from "../styles/last_view.module.css";
 function Last_view({ filmes }) {
   return (
     <div>

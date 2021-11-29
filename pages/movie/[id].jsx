@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 function Start_filme() {
   const router = useRouter();
   const id = router.query.id;
@@ -8,32 +8,13 @@ function Start_filme() {
   //const [base_url] = useState("https://play.midiaflixhd.com/");
   return (
     <div>
-      <div style={{zIndex:'10'}}>
-      <button style={{zIndex:'10'}}
-        onClick={() => {
-          set_base_url("https://player.uauflix.online/");
-        }}
-      >
-        server01
-      </button>
-      <button style={{zIndex:'10'}}
-        onClick={() => {
-          set_base_url("https://play.midiaflixhd.com/");
-        }}
-      >
-        server02
-      </button>
-      <Link href="/movie">
-        <a>
-          <button>
-            Voltar
-          </button>
-        </a>
-      </Link>
+      <div style={{ zIndex: "99", position: "fixed", margin: "5px 48%" }}>
+        <Link href="/movie">
+          <a className="myButton">Voltar</a>
+        </Link>
       </div>
-     
       <iframe
-        style={{ width: "100vw", height: "100vh"}}
+        style={{ width: "100vw", height: "100vh" }}
         rel="preload"
         autoPlay
         allow="autoplay; encrypted-media; preload"

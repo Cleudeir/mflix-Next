@@ -27,7 +27,7 @@
     background-color: var(--cor-01);
     border-radius: 5px;
     height: 300px;
-    width: 200px;
+    width: 193px;
     justify-content: flex-start;
     align-items: center;
     
@@ -35,14 +35,13 @@
 .image{
     border-radius: 20px;
     padding: 4px;
-    box-sizing: border-box;
 }
 
 .h6{
     width: 96%;
     text-align: center;
     background-color: rgba(255,255,255,.8);
-    margin-top: -20px;
+    margin-top: -10px;
     z-index: 1;
 }
 .category{

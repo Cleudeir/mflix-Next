@@ -12,7 +12,7 @@ function Card(props) {
                 <a className={styles.image}>
                   <Image
                     src={x.poster_path}
-                    width={200}
+                    width={180}
                     height={300}
                     layout="intrinsic"
                     alt={x.title}

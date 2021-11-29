@@ -19,6 +19,7 @@ a {
   text-decoration: none;
 }
 
+
 * {
   box-sizing: border-box;
 }
@@ -40,14 +41,18 @@ a {
 	text-decoration:none;
     margin: 1px;
     z-index: 99;
+    height: 50px;
+    border-radius: 3px;
    
 }
 .myButton:hover {
 	background:linear-gradient(to bottom, var(--cor-04) 5%, var(--cor-03) 100%);
+  border-radius: 3px;
 	background-color:var(--cor-04);
   
 }
 .myButton:active {
 	position:relative;
 	top:1px;
+  border-radius: 3px;
 }
