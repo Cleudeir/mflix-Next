@@ -1,27 +1,11 @@
-import Link from "next/link";
-import Styles from "../styles/Home.module.css";
+import React, { useEffect } from "react";
+import Router from "next/router";
 export default function Home() {
-  return (
-    <div
-      className={Styles.container}
-      style={{ display: "flex", justifyContent: "space-around" }}
-    >
-      <Link href="/movie">
-        <a
-          className="myButton"
-          style={{ width: "300px", height: "200px", fontSize: "2em" }}
-        >
-          Movie
-        </a>
-      </Link>
-      <Link href="/tv">
-        <a
-          className="myButton"
-          style={{ width: "300px", height: "200px", fontSize: "2em" }}
-        >
-          Tv
-        </a>
-      </Link>
-    </div>
-  );
+  useEffect(() => {
+    const { pathname } = Router;
+    if (pathname == "/") {
+      Router.push("/movie");
+    }
+  });
+  return <div></div>;
 }
