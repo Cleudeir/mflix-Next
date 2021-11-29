@@ -3,7 +3,7 @@ export const library_movies = async () => {
   if (relember) {
     return relember;
   } else {
-    const res = await fetch("/api/movie/crawling");
+    const res = await fetch("/api/crawling");
     const posts = await res.json();
     localStorage.setItem("library_movies", JSON.stringify(posts));
     return posts;
