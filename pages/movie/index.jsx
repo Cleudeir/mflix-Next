@@ -47,8 +47,8 @@ const Movies = () => {
     }
   };
   const value_select = (props) => {
-    console.log(props);
     set_render_genre(props);
+
     localStorage.setItem('render_genre',JSON.stringify(props))
   };
 
