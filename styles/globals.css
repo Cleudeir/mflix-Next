@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color:var(--cor-02)
 }
 
 :root{
@@ -20,4 +21,33 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #7a8eb9;
+	background:linear-gradient(to bottom, var(--cor-03) 5%, var(--cor-04) 100%);
+	background-color:var(--cor-03) ;
+	border:1px solid var(--cor-05);
+	display:flex;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+  justify-content: center;
+  align-items: center;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+    margin: 1px;
+    z-index: 99;
+   
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, var(--cor-04) 5%, var(--cor-03) 100%);
+	background-color:var(--cor-04);
+  
+}
+.myButton:active {
+	position:relative;
+	top:1px;
 }

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Search_movies from "../../components/Search_movies";
+import Search from "../../components/movie/Search";
 import Cards from "../../components/Cards";
 import styles from "../../styles/cards.module.css";
 import Last_view from "../../components/Last_view";
-
+import Link from "next/link";
 const Movies = () => {
   const [movie_genre, set_movie_genre] = useState(false);
   const [movie_find, set_movie_find] = useState(false);
@@ -13,30 +13,24 @@ const Movies = () => {
 
   const search = async () => {
     //Buscar
-    const search_item = await Search_movies()
-      .then((result) => result)
-      .catch((data) => data);
-    const result = await search_item;
+    const search_item = await Search();
+    console.log(search_item);
     //--
-    set_movie(result.movie);
-    set_genres(result.genres);
-    set_movie_genre(result.movie_genres);
-    set_render_genre(Math.floor(Math.random()*15))
+    if (search_item.movie.length > 0) {
+      set_movie(search_item.movie);
+      set_genres(search_item.genres);
+      set_movie_genre(search_item.movie_genres);
+    }
   };
-
   useEffect(() => {
-    
     if (localStorage.getItem("movie_genre")) {
       set_genres(JSON.parse(localStorage.getItem("genres")));
       set_movie_genre(JSON.parse(localStorage.getItem("movie_genre")));
       set_movie(JSON.parse(localStorage.getItem("movie")));
-      set_render_genre(Math.floor(Math.random()*15))
     } else {
       search();
     }
   }, []);
- 
-  console.log({ movie_genre, genres, movie, movie_find });
 
   const find = (e) => {
     let a = e;
@@ -52,10 +46,20 @@ const Movies = () => {
 
   return (
     <>
-      <div style={{ display: "flex",backgroundColor:'var(--cor-02)',justifyContent:'flex-start'}}>
+      <div
+        style={{
+          display: "flex",
+          backgroundColor: "var(--cor-02)",
+          justifyContent: "flex-start",
+        }}
+      >
+        <Link href="/">
+          <a className="myButton">Home</a>
+        </Link>
         <input
-          className={styles.myButton}
+          className="myButton"
           type="text"
+          placeholder="Search"
           onChange={(e) => {
             find(e.target.value);
           }}
@@ -65,7 +69,7 @@ const Movies = () => {
             <select
               name="select"
               value={render_genre}
-              className={styles.myButton}
+              className="myButton"
               onChange={(e) => {
                 find("");
                 set_render_genre(e.target.value);
@@ -73,7 +77,7 @@ const Movies = () => {
             >
               {genres &&
                 genres.map((x, i) => (
-                  <option key={i} value={i} >
+                  <option key={i} value={i}>
                     {x}
                   </option>
                 ))}
@@ -82,7 +86,7 @@ const Movies = () => {
         }
       </div>
       <div className={styles.conteiner}>
-        {movie_genre && <Last_view filmes={movie_genre[render_genre]}  />}
+        {movie_genre && <Last_view filmes={movie_genre[render_genre]} />}
         {movie_genre && Cards(movie_find)}
         {movie_genre && !movie_find && Cards(movie_genre[render_genre])}
       </div>

@@ -1,5 +1,13 @@
-import { library_movies } from "../library/library_movies";
-async function Search_movies() {
+import { library_movies } from "./library_movies";
+
+async function Search() {
+  //library get
+  const get_library = await library_movies()
+    .then((result) => result)
+    .catch((data) => data);
+  const library = await get_library;
+  //--
+  console.log("get_library", get_library);
   const get_infos = async (props) => {
     let array_infos = [];
     for (let i = 0; i < props.length; i++) {
@@ -15,16 +23,15 @@ async function Search_movies() {
     return Promise.all(array_infos).then((x) => x);
   };
   //Buscar
-  let get = await get_infos(library_movies.reverse().splice(0, 1000));
+  let get = await get_infos(library);
 
   let movie = get.filter((x) => x !== false);
-  localStorage.setItem("movie", JSON.stringify(movie));
+
   //--
   //Criar Array com categorias dos filmes
   const genres_single = new Set();
   movie.map((item) => genres_single.add(item.genres));
   const genres = await Array.from(genres_single).sort();
-  localStorage.setItem("genres", JSON.stringify(genres));
 
   //Criar Array com filmes categorizados por genero
   const movie_genres_no_sort = [];
@@ -41,12 +48,17 @@ async function Search_movies() {
         .reverse()
     );
   }
-  console.log(movie_genres);
   //--
-  localStorage.setItem("movie_genre", JSON.stringify(movie_genres_no_sort));
+  if (movie.length > 0) {
+    localStorage.setItem("movie", JSON.stringify(movie));
+    localStorage.setItem("genres", JSON.stringify(genres));
+    localStorage.setItem("movie_genre", JSON.stringify(movie_genres_no_sort));
+  }
+
   //--
+  console.log({ movie, genres, movie_genres });
 
   return { movie, genres, movie_genres };
 }
 
-export default Search_movies;
+export default Search;

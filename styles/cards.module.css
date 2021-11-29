@@ -52,29 +52,4 @@
     justify-content: flex-start;
     align-items: flex-start;
 }
-.myButton {
-	box-shadow:inset 0px 1px 0px 0px #7a8eb9;
-	background:linear-gradient(to bottom, var(--cor-03) 5%, var(--cor-04) 100%);
-	background-color:var(--cor-03) ;
-	border:1px solid var(--cor-05);
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:13px;
-	font-weight:bold;
-	padding:6px 12px;
-	text-decoration:none;
-    margin: 1px;
-    z-index: 99;
-   
-}
-.myButton:hover {
-	background:linear-gradient(to bottom, var(--cor-04) 5%, var(--cor-03) 100%);
-	background-color:var(--cor-04);
-  
-}
-.myButton:active {
-	position:relative;
-	top:1px;
-}
+
