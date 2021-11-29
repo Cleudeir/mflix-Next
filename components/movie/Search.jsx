@@ -1,17 +1,12 @@
-import { library_movies } from "./library_movies";
-
 async function Search() {
   //library get
-  const get_library = await library_movies()
-    .then((result) => result)
-    .catch((data) => data);
-  const library = await get_library;
+  const library = require("./library_movies.json");
   //--
-  console.log("get_library", get_library);
+  console.log("library", library);
   const get_infos = async (props) => {
     let array_infos = [];
     for (let i = 0; i < props.length; i++) {
-      let get_fetch = fetch(`/api/movie/${props[i].id}`)
+      let get_fetch = fetch(`/api/movie/${props[i]}`)
         .then((resp) => {
           return resp.json();
         })
