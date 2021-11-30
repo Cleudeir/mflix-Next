@@ -1,6 +1,10 @@
-import Header_buttons from "../../components/Header_buttons";
-function Tv() {
-  return <Header_buttons />;
-}
+import Pages from "../../components/Pages";
 
+const Tv = () => {
+  return (
+    <>
+      <Pages type="tv" />
+    </>
+  );
+};
 export default Tv;

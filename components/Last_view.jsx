@@ -1,7 +1,7 @@
 import styles from "../styles/lastView.module.css";
 function Last_view({ filmes }) {
   return (
-    <div>
+    <div className={styles.container}>
       <section
         className={styles.background}
         style={{

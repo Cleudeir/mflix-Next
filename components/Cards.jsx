@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/cards.module.css";
-function Card(props) {
+function Card({info,type}) {
   return (
     <div className={styles.list_cards}>
-      {props &&
-        props.map((x, i) => {
+      {info &&
+        info.map((x, i) => {
           return (
             <div key={i} className={styles.card}>
-              <Link href={`/movie/${x.imdb_id}`}>
+              <Link href={`/${type}/${x.imdb_id}`}>
                 <a className={styles.image}>
                   <Image
                     src={x.poster_path}

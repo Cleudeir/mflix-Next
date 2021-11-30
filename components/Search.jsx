@@ -1,12 +1,13 @@
-async function Search() {
+async function Search(type) {
   //library get
-  const library = require("./library_movies.json");
+  console.log("type", type);
+  const library =await require(`./library_${type}.json`);
   //--
   console.log("library", library);
   const get_infos = async (props) => {
     let array_infos = [];
     for (let i = 0; i < props.length; i++) {
-      let get_fetch = fetch(`/api/movie/${props[i]}`)
+      let get_fetch = fetch(`/api/${type}/${props[i]}`)
         .then((resp) => {
           return resp.json();
         })
@@ -19,23 +20,20 @@ async function Search() {
   };
   //Buscar
   let get = await get_infos(library);
-
-  let movie = get.filter((x) => x !== false);
-
+  let data = get.filter((x) => x !== false);
   //--
-  //Criar Array com categorias dos filmes
+  //Criar Array com generos
   const genres_single = new Set();
-  movie.map((item) => genres_single.add(item.genres));
+  data.map((item) => genres_single.add(item.genres));
   const genres = await Array.from(genres_single).sort();
-
-  //Criar Array com filmes categorizados por genero
+  //Criar Array categorizado por genero
   const movie_genres_no_sort = [];
   for (let i = 0; i < genres.length; i++) {
-    movie_genres_no_sort.push(movie.filter((x) => x.genres === genres[i]));
+    movie_genres_no_sort.push(data.filter((x) => x.genres === genres[i]));
   }
-  const movie_genres = [];
+  const data_genres = [];
   for (let j = 0; j < movie_genres_no_sort.length; j++) {
-    movie_genres.push(
+    data_genres.push(
       movie_genres_no_sort[j]
         .sort(function (a, b) {
           return a.vote_average - b.vote_average;
@@ -43,17 +41,12 @@ async function Search() {
         .reverse()
     );
   }
+  const obj = { data, genres, data_genres };
   //--
-  if (movie.length > 0) {
-    localStorage.setItem("movie", JSON.stringify(movie));
-    localStorage.setItem("genres", JSON.stringify(genres));
-    localStorage.setItem("movie_genre", JSON.stringify(movie_genres_no_sort));
+  if (data.length > 0) {
+    localStorage.setItem(`obj_${type}`, JSON.stringify({ ...obj }));
   }
-
   //--
-  console.log({ movie, genres, movie_genres });
-
-  return { movie, genres, movie_genres };
+  return { ...obj };
 }
-
 export default Search;

@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color:var(--cor-02)
+    background-color:var(--cor-02);
 }
 
 :root{
@@ -23,7 +23,9 @@ a {
 * {
   box-sizing: border-box;
 }
-
+.container{
+  width: 100%;
+}
 .myButton {
 	box-shadow:inset 0px 1px 0px 0px #7a8eb9;
 	background:linear-gradient(to bottom, var(--cor-03) 5%, var(--cor-04) 100%);
@@ -39,19 +41,25 @@ a {
 	font-weight:bold;
 	padding:6px 12px;
 	text-decoration:none;
-    margin: 1px;
-    z-index: 99;
-    height: 50px;
-    border-radius: 3px;
-   
+  margin: 1px;
+  z-index: 99;
+  height: 40px;
+  border-radius: 3px;
+  width: 100%;
 }
 .myButton:hover {
 	background:linear-gradient(to bottom, var(--cor-04) 5%, var(--cor-03) 100%);
   border-radius: 3px;
-	background-color:var(--cor-04);
+	background-color:rgb(167, 60, 60);
   
 }
 .myButton:active {
+	position:relative;
+	top:1px;
+  border-radius: 3px;
+}
+
+.myButton:after {
 	position:relative;
 	top:1px;
   border-radius: 3px;
