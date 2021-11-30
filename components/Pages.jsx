@@ -4,8 +4,9 @@ import Cards from "./Cards";
 import styles from "../styles/cards.module.css";
 import Last_view from "./Last_view";
 import Header_buttons from "./Header";
+import Image from "next/image";
 
-const Pages = ({type}) => {
+const Pages = ({ type }) => {
   const [data, set_data] = useState(false);
   const [data_genre, set_data_genre] = useState(false);
   const [genres, set_genres] = useState(false);
@@ -14,9 +15,9 @@ const Pages = ({type}) => {
 
   const start = async (props) => {
     //Buscar
-    console.log('start',props);
+    console.log("start", props);
     const search_items = await Search(props);
-    
+
     //--
     if (search_items.data.length > 0) {
       set_data(search_items.data);
@@ -25,7 +26,7 @@ const Pages = ({type}) => {
     }
   };
   useEffect(() => {
-    console.log('type:',type)
+    console.log("type:", type);
     let obj = JSON.parse(localStorage.getItem(`obj_${type}`));
     console.log(`obj_${type}`, obj);
     if (localStorage.getItem(`obj_${type}`)) {
@@ -35,6 +36,7 @@ const Pages = ({type}) => {
     } else {
       start(type);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const value_input = (props) => {
     console.log(props);
@@ -54,14 +56,14 @@ const Pages = ({type}) => {
     localStorage.setItem(`render_genre_${type}`, JSON.stringify(props));
   };
   return (
-    <div className='container' >
-      {genres && (
+    <div className="container">
+      {
         <Header_buttons
           genres={genres}
           value_input={value_input}
           value_select={value_select}
         />
-      )}
+      }
       <div className={styles.container}>
         {data_genre && <Last_view filmes={data_genre[render_genre]} />}
         {data_genre && Cards({ info: render_data_find, type: `${type}` })}
@@ -69,6 +71,22 @@ const Pages = ({type}) => {
           !render_data_find &&
           Cards({ info: data_genre[render_genre], type: `${type}` })}
       </div>
+      {!data && (
+        // eslint-disable-next-line @next/next/no-img-element
+        /*<img
+          style={{ position: "fixed",top:'0', width: "100%", height: "100vh",objectFit:'cover' }}
+          src="https://cdn.dribbble.com/users/3787071/screenshots/15616036/media/12058e1977ccd7435b17cf2ba85095aa.gif"
+          alt="loading"
+        />*/
+        <Image
+          src="https://cdn.dribbble.com/users/3787071/screenshots/15616036/media/12058e1977ccd7435b17cf2ba85095aa.gif"
+          objectFit="cover"
+          layout="fill"
+          alt="loading"
+          quality={100}
+          priority
+        />
+      )}
     </div>
   );
 };
