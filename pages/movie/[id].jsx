@@ -7,14 +7,14 @@ function Start_filme() {
   const [base_url, set_base_url] = useState("https://player.uauflix.online/");
   //const [base_url] = useState("https://play.midiaflixhd.com/");
   return (
-    <div>
+    <div  style={{ width: "100%", height: "100vh" ,overflow:'hidden'}}>
       <div style={{ zIndex: "99", position: "fixed", margin: "5px 48%" }}>
         <Link href="/movie">
           <a className="myButton">Voltar</a>
         </Link>
       </div>
       <iframe
-        style={{ width: "100vw", height: "100vh" }}
+        style={{ width: "100%", height: "100vh" ,overflow:'hidden'}}
         rel="preload"
         autoPlay
         allow="autoplay; encrypted-media; preload"
