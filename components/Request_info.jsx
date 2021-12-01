@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-export default async function Api_request_info({ id, type }) {
+export default async function Request_info({ id, type }) {
   const API_KEY = "5417af578f487448df0d4932bc0cc1a5";
   const API_BASE = "https://api.themoviedb.org/3";
 
