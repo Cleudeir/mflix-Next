@@ -39,7 +39,7 @@ function Crawling(req, res) {
         const result_filter = array_id_sort.filter((x) => x.date >= 2021);
         result_filter.map((x) => result_ids.push(x.id));
         fs.writeFileSync(
-          `./components/library_movie.json`,
+          `./data/ids_movie.json`,
           JSON.stringify(result_ids)
         );
       }
@@ -54,7 +54,7 @@ function Crawling(req, res) {
         const result_filter = array_id_sort.filter((x) => x.date >= 2018);
         result_filter.map((x) => result_ids.push(x.id));
         fs.writeFileSync(
-          `./components/library_tv.json`,
+          `./data/ids_tv.json`,
           JSON.stringify(result_ids)
         );
       }

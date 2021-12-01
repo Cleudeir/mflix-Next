@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Search from "./Search";
+import Filters from "./Filters";
 import Cards from "./Cards";
 import styles from "../styles/cards.module.css";
 import Last_view from "./Last_view";
@@ -16,26 +16,14 @@ const Pages = ({ type }) => {
   const start = async (props) => {
     //Buscar
     console.log("start", props);
-    const search_items = await Search(props);
-
+    const search_items = await Filters(props);
     //--
-    if (search_items.data.length > 0) {
-      set_data(search_items.data);
-      set_genres(search_items.genres);
-      set_data_genre(search_items.data_genres);
-    }
+    set_data(search_items.data);
+    set_genres(search_items.genres);
+    set_data_genre(search_items.data_genres);
   };
   useEffect(() => {
-    console.log("type:", type);
-    let obj = JSON.parse(localStorage.getItem(`obj_${type}`));
-    console.log(`obj_${type}`, obj);
-    if (localStorage.getItem(`obj_${type}`)) {
-      set_genres(obj.genres);
-      set_data_genre(obj.data_genres);
-      set_data(obj.data);
-    } else {
-      start(type);
-    }
+    start(type);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const value_input = (props) => {

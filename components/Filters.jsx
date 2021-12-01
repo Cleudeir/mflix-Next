@@ -1,25 +1,9 @@
-async function Search(type) {
+async function Filters(type) {
   //library get
   console.log("type", type);
-  const library =await require(`./library_${type}.json`);
+  const library =await require(`../data/data_${type}.json`);
   //--
-  console.log("library", library);
-  const get_infos = async (props) => {
-    let array_infos = [];
-    for (let i = 0; i < props.length; i++) {
-      let get_fetch = fetch(`/api/${type}/${props[i]}`)
-        .then((resp) => {
-          return resp.json();
-        })
-        .then((data) => {
-          return data;
-        });
-      array_infos.push(get_fetch);
-    }
-    return Promise.all(array_infos).then((x) => x);
-  };
-  //Buscar
-  let get = await get_infos(library);
+  let get = await library
   let data = get.filter((x) => x !== false);
   //--
   //Criar Array com generos
@@ -42,11 +26,7 @@ async function Search(type) {
     );
   }
   const obj = { data, genres, data_genres };
-  //--
-  if (data.length > 0) {
-    localStorage.setItem(`obj_${type}`, JSON.stringify({ ...obj }));
-  }
-  //--
+  console.log({ ...obj })
   return { ...obj };
 }
-export default Search;
+export default Filters;
