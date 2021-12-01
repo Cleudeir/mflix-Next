@@ -4,10 +4,8 @@ import Link from "next/link";
 function Start_filme() {
   const router = useRouter();
   const id = router.query.id;
-  const [base_url] = useState(
-    "https://player.uauflix.online/tv/"
-  );
-  const [, set_ep] = useState('"/1/1/dub"')
+  const [base_url] = useState("https://player.uauflix.online/tv/");
+  const [ep] = useState('"/1/1/dub"');
   //const [base_url] = useState("https://play.midiaflixhd.com/");
   return (
     <div style={{ width: "100%", height: "100vh", overflow: "hidden" }}>
