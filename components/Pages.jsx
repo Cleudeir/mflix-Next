@@ -59,22 +59,6 @@ const Pages = ({ type }) => {
           !render_data_find &&
           Cards({ info: data_genre[render_genre], type: `${type}` })}
       </div>
-      {!data && (
-        // eslint-disable-next-line @next/next/no-img-element
-        /*<img
-          style={{ position: "fixed",top:'0', width: "100%", height: "100vh",objectFit:'cover' }}
-          src="https://cdn.dribbble.com/users/3787071/screenshots/15616036/media/12058e1977ccd7435b17cf2ba85095aa.gif"
-          alt="loading"
-        />*/
-        <Image
-          src="https://cdn.dribbble.com/users/3787071/screenshots/15616036/media/12058e1977ccd7435b17cf2ba85095aa.gif"
-          objectFit="cover"
-          layout="fill"
-          alt="loading"
-          quality={100}
-          priority
-        />
-      )}
     </div>
   );
 };
