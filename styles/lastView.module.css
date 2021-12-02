@@ -2,7 +2,6 @@
     width:100%;
 }
 .background{
-    height: 60vh;
     width:100%;
     object-fit:fill;
     background-size: cover;
@@ -23,11 +22,11 @@
 
 @media screen and (max-width: 600px) {
     .background{
-        height: 70vh;
+        height: 60vh;
     }
   }
 @media screen and (min-width: 600px) {
     .background{
-        height: 80vh;
+        height: 70vh;
     }
   }

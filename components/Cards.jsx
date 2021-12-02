@@ -1,14 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/cards.module.css";
-function Card({info,type}) {
+function Card({ info, type }) {
+  const url = (x) => {
+    if (type === "movie") {
+      let url = `/${type}/${x.imdb_id}`;
+      return url;
+    }
+    if (type === "tv") {
+      let ep = `1/1/dub`;
+      let url = `/${type}/${x.imdb_id}/${ep}`;
+      return url;
+    }
+  };
+
   return (
     <div className={styles.list_cards}>
       {info &&
         info.map((x, i) => {
           return (
             <div key={i} className={styles.card}>
-              <Link href={`/${type}/${x.imdb_id}`}>
+              <Link href={url(x)}>
                 <a className={styles.image}>
                   <Image
                     src={x.poster_path}
@@ -17,9 +29,9 @@ function Card({info,type}) {
                     layout="intrinsic"
                     alt={x.title}
                   />
-                  </a>
+                </a>
               </Link>
-                  <h6 className={styles.h6}>{x.title.slice(0, 25)} </h6>
+              <h6 className={styles.h6}>{x.title.slice(0, 25)} </h6>
             </div>
           );
         })}

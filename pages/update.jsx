@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-function Updata() {
+function go() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [status, setStatus] = useState("Atualizando....");
 
   async function update() {
@@ -27,6 +28,7 @@ function Updata() {
     setStatus("tvs, está atualizado, Acabou, está atualizado");
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     update();
   }, []);
@@ -37,4 +39,4 @@ function Updata() {
   );
 }
 
-export default Updata;
+export default go;

@@ -16,6 +16,9 @@ export default async function handler(req, res) {
     return await Promise.all(array_infos).then((x) => x);
   };
   let result_get = await get();
-  fs.writeFileSync(`./data/data_tv.json`, JSON.stringify(result_get));
-  res.status(200).json(result_get);
+  fs.writeFileSync(
+    `./data/data_tv.json`,
+    JSON.stringify(result_get.filter((x) => x !== false))
+  );
+  res.status(200).json(result_get.filter((x) => x !== false));
 }

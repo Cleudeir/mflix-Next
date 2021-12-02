@@ -36,12 +36,11 @@ function Crawling(req, res) {
             date: +x["Data de publicação"].slice(0, 4),
           });
         });
-        const result_filter = array_id_sort.filter((x) => x.date >= 2021);
+        const result_filter = array_id_sort
+          .filter((x) => x.date >= 2021)
+          .filter((x) => x !== false);
         result_filter.map((x) => result_ids.push(x.id));
-        fs.writeFileSync(
-          `./data/ids_movie.json`,
-          JSON.stringify(result_ids)
-        );
+        fs.writeFileSync(`./data/ids_movie.json`, JSON.stringify(result_ids));
       }
       //--
       if (props.type === "tv") {
@@ -51,12 +50,11 @@ function Crawling(req, res) {
             date: +x["Última atualização"].slice(0, 4),
           });
         });
-        const result_filter = array_id_sort.filter((x) => x.date >= 2018);
+        const result_filter = array_id_sort
+          .filter((x) => x.date >= 2019)
+          .filter((x) => x !== false);
         result_filter.map((x) => result_ids.push(x.id));
-        fs.writeFileSync(
-          `./data/ids_tv.json`,
-          JSON.stringify(result_ids)
-        );
+        fs.writeFileSync(`./data/ids_tv.json`, JSON.stringify(result_ids));
       }
       await browser.close();
       return result_ids;

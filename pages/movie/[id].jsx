@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Link from "next/link";
-function Start_filme() {
+function Play() {
   const router = useRouter();
   const id = router.query.id;
   const [base_url] = useState("https://player.uauflix.online/");
   return (
     <div style={{ width: "100%", height: "100vh", overflow: "hidden" }}>
-      <div style={{ zIndex: "99", position: "fixed", margin: "5px 48%" }}>
+      <div style={{ zIndex: "99", position: "fixed", width:'75px'}}>
         <Link href="/movie">
           <a className="myButton">Voltar</a>
         </Link>
@@ -29,4 +29,4 @@ function Start_filme() {
   );
 }
 
-export default Start_filme;
+export default Play;

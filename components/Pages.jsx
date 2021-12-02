@@ -23,6 +23,7 @@ const Pages = ({ type }) => {
     set_data_genre(search_items.data_genres);
   };
   useEffect(() => {
+    localStorage.clear();
     start(type);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -50,6 +51,7 @@ const Pages = ({ type }) => {
           genres={genres}
           value_input={value_input}
           value_select={value_select}
+          type={type}
         />
       }
       <div className={styles.container}>

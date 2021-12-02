@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "../styles/Header.module.css";
-function Header_buttons({ genres, value_input, value_select }) {
+function Header_buttons({ genres, value_input, value_select, type }) {
   return (
     <div className={styles.container}>
       <div
@@ -8,12 +8,16 @@ function Header_buttons({ genres, value_input, value_select }) {
           display: "flex",
         }}
       >
-        <Link href="/movie">
-          <a className="myButton">Movie</a>
-        </Link>
-        <Link href="/tv">
-          <a className="myButton">TvShow</a>
-        </Link>
+        {type === "tv" && (
+          <Link href="/movie">
+            <a style={{width:'75px'}} className="myButton">Movie</a>
+          </Link>
+        )}
+        {type === "movie" && (
+          <Link href="/tv">
+            <a style={{width:'75px'}}  className="myButton">TvShow</a>
+          </Link>
+        )}
       </div>
       <div
         style={{

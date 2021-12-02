@@ -11,7 +11,9 @@ function Last_view({ filmes }) {
         }}
       >
         <div className={styles.Vertical}>
-          <div className={styles.horizontal}></div>
+          <div className={styles.horizontal}>
+            
+          </div>
         </div>
       </section>
     </div>
