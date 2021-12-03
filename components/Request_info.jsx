@@ -3,9 +3,7 @@ export default async function Request_info({ id, type }) {
   const API_KEY = "5417af578f487448df0d4932bc0cc1a5";
   const API_BASE = "https://api.themoviedb.org/3";
 
-  let search = await fetch(
-    `${API_BASE}/${type}/${id}?api_key=${API_KEY}&language=pt-BR`
-  )
+  let search = await fetch(`${API_BASE}/${type}/${id}?api_key=${API_KEY}`)
     .then((response) => response.json())
     .then((data) => data)
     .catch(() => null);
@@ -73,7 +71,7 @@ export default async function Request_info({ id, type }) {
       const promisse_seasons_details = [];
       for (let i = 1; i <= number_of_seasons; i++) {
         let search_details = await fetch(
-          `${API_BASE}/tv/${id}/season/${i}?api_key=${API_KEY}&language=pt-BR`
+          `${API_BASE}/tv/${id}/season/${i}?api_key=${API_KEY}`
         )
           .then((response) => response.json())
           .then((data) => data)
