@@ -77,6 +77,7 @@ function Play() {
           onClick={() => {
             if (ep > 0) {
               set_ep(ep - 1);
+              localStorage.setItem(id, ep - 1);
             }
           }}
         >
@@ -88,6 +89,7 @@ function Play() {
           onClick={() => {
             if (ep < seasons.length - 1) {
               set_ep(ep + 1);
+              localStorage.setItem(id, ep + 1);
             }
           }}
         >
