@@ -45,7 +45,6 @@ a {
   z-index: 99;
   height: 40px;
   border-radius: 3px;
-  width: 100%;
 }
 .myButton:hover {
 	background:linear-gradient(to bottom, var(--cor-04) 5%, var(--cor-03) 100%);

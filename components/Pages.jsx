@@ -4,8 +4,6 @@ import Cards from "./Cards";
 import styles from "../styles/cards.module.css";
 import Last_view from "./Last_view";
 import Header_buttons from "./Header";
-import Image from "next/image";
-
 const Pages = ({ type }) => {
   const [data, set_data] = useState(false);
   const [data_genre, set_data_genre] = useState(false);
@@ -23,7 +21,6 @@ const Pages = ({ type }) => {
     set_data_genre(search_items.data_genres);
   };
   useEffect(() => {
-    localStorage.clear();
     start(type);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

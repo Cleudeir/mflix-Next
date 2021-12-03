@@ -18,7 +18,7 @@ async function Filters(type) {
   }
   //--
   //add Lançamentos
-  genres = ["Lançamentos", ...genres];
+  genres = ["Release", ...genres];
   data_genres = [data.slice(0, 8), ...data_genres];
   //--
   /*

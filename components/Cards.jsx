@@ -8,8 +8,7 @@ function Card({ info, type }) {
       return url;
     }
     if (type === "tv") {
-      let ep = `1/1/dub`;
-      let url = `/${type}/${x.imdb_id}/${ep}`;
+      let url = `/${type}/${x.imdb_id}`;
       return url;
     }
   };

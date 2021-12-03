@@ -81,8 +81,12 @@ export default async function Request_info({ id, type }) {
         }
       }
       const info_seasons = promisse_seasons_details;
+      const seasons = [];
+      for (let j = 0; j < info_seasons.length; j++) {
+        seasons.push(info_seasons[j].episodes.length);
+      }
       return {
-        number_of_seasons,
+        seasons,
         backdrop_path,
         genres,
         imdb_id: id,
