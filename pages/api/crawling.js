@@ -7,16 +7,15 @@ function Crawling(req, res) {
       const browser = await puppeteer.launch(
         process.env.NODE_ENV === "production"
           ? {
-              args: chrome.args,
-              executablePath: await chrome.executablePath,
-              headless: chrome.headless,
-            }
+            args: chrome.args,
+            executablePath: await chrome.executablePath,
+            headless: chrome.headless,
+          }
           : {}
       );
       const page = await browser.newPage();
       await page.setJavaScriptEnabled(false);
       await page.goto(props.link);
-      //await page.select('select[name="datatable-list_length"]', "100");
       const table = await page.evaluate(() => {
         return document.getElementById("datatable-list").innerHTML;
       });

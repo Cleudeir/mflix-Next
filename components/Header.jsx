@@ -10,12 +10,16 @@ function Header_buttons({ genres, value_input, value_select, type }) {
       >
         {type === "tv" && (
           <Link href="/movie">
-            <a style={{width:'75px'}} className="myButton">Movie</a>
+            <a style={{ width: "75px" }} className="myButton">
+              Movie
+            </a>
           </Link>
         )}
         {type === "movie" && (
           <Link href="/tv">
-            <a style={{width:'75px'}}  className="myButton">TvShow</a>
+            <a style={{ width: "75px" }} className="myButton">
+              TvShow
+            </a>
           </Link>
         )}
       </div>
@@ -25,6 +29,7 @@ function Header_buttons({ genres, value_input, value_select, type }) {
         }}
       >
         <input
+          style={{ width: "80px" }}
           className="myButton"
           type="text"
           placeholder="Search"

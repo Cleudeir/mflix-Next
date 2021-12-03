@@ -4,62 +4,70 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color:var(--cor-02);
+  background-color: var(--cor-02);
 }
 
-:root{
+:root {
   --cor-01: rgb(87, 87, 146);
   --cor-02: rgb(53, 50, 79);
   --cor-03: #1b223170;
   --cor-04: #12172185;
   --cor-05: #949cba;
 }
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-
 * {
   box-sizing: border-box;
 }
-.container{
+
+.container {
   width: 100%;
 }
+
 .myButton {
-	box-shadow:inset 0px 1px 0px 0px #7a8eb9;
-	background:linear-gradient(to bottom, var(--cor-03) 5%, var(--cor-04) 100%);
-	background-color:var(--cor-03) ;
-	border:1px solid var(--cor-05);
-	display:flex;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
+  box-shadow: inset 0px 1px 0px 0px #7a8eb9;
+  background: linear-gradient(to bottom, var(--cor-03) 5%, var(--cor-04) 100%);
+  background-color: var(--cor-03);
+  border: 1px solid var(--cor-05);
+  display: flex;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
   justify-content: center;
   align-items: center;
-	font-size:13px;
-	font-weight:bold;
-	padding:6px 12px;
-	text-decoration:none;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 6px 12px;
+  text-decoration: none;
   margin: 1px;
   z-index: 99;
   height: 40px;
   border-radius: 3px;
 }
+
 .myButton:hover {
-	background:linear-gradient(to bottom, var(--cor-04) 5%, var(--cor-03) 100%);
+  background: linear-gradient(to bottom, var(--cor-04) 5%, var(--cor-03) 100%);
   border-radius: 3px;
-	background-color:rgb(167, 60, 60);
-  
+  background-color: rgb(167, 60, 60);
 }
+
+input::placeholder {
+  /* Most modern browsers support this now. */
+  color: #fff;
+}
+
 .myButton:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
   border-radius: 3px;
 }
 
 .myButton:after {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
   border-radius: 3px;
 }
