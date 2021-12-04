@@ -1,21 +1,58 @@
 import styles from "../styles/lastView.module.css";
-function Last_view({ filmes }) {
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+
+function Last_view({ data, type }) {
+  const [last, setLast] = useState(false);
+  useEffect(() => {
+    console.log(type);
+    let storage = localStorage.getItem(`lastView_${type}`);
+    console.log(storage);
+    if (storage) {
+      let filter = data.filter((x) => x.imdb_id === storage)[0];
+      console.log(filter);
+      setLast(filter);
+    } else {
+      setLast(data[0]);
+    }
+  }, []);
+
   return (
-    <div className={styles.container}>
-      <section
-        className={styles.background}
-        style={{
-          backgroundImage: `url(${
-            filmes[Math.floor(Math.random() * filmes.length)].backdrop_path
-          })`,
-        }}
-      >
-        <div className={styles.Vertical}>
-          <div className={styles.horizontal}>            
+    last && (
+      <div className={styles.container}>
+        <section
+          className={styles.background}
+          style={{
+            backgroundImage: `url(${last.backdrop_path})`,
+          }}
+        >
+          <div className={styles.Vertical}>
+            <div className={styles.horizontal}></div>
           </div>
-        </div>
-      </section>
-    </div>
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              color: "white",
+              marginLeft: "20px",
+              zIndex:'2'
+            }}
+          >
+            <h1>{last.title}</h1>
+            <p style={{ width: "320px" }}>{last.overview.slice(0, 250)}...</p>
+            <Link href={`/${type}/${last.imdb_id}`}>
+              <a style={{ width: "75px" }} className="myButton">
+                Play
+              </a>
+            </Link>
+
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <h5>Rate: {last.vote_average}</h5>-<h5>Genre: {last.genres}</h5>
+            </div>
+          </div>
+        </section>
+      </div>
+    )
   );
 }
 

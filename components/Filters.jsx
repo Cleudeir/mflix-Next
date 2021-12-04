@@ -7,32 +7,21 @@ async function Filters(type) {
   let data = get;
   //--
   //Criar Array com generos
-  const genres_single = new Set();
-  data.map((item) => genres_single.add(item.genres));
-  const genres = await Array.from(genres_single).sort();
+  const genresSingle = new Set();
+  data.map((item) => genresSingle.add(item.genres));
+  const genres = await Array.from(genresSingle).sort();
   //--
   //Criar Array categorizado por genero
-  const data_genres = [];
+  const dataGenres = [];
   for (let i = 0; i < genres.length; i++) {
-    data_genres.push(data.filter((x) => x.genres === genres[i]));
+    dataGenres.push(data.filter((x) => x.genres === genres[i]));
   }
   //--
   //add Lançamentos
   genres = ["Release", ...genres];
-  data_genres = [data.slice(0, 8), ...data_genres];
+  dataGenres = [data.slice(0, 8), ...dataGenres];
   //--
-  /*
-  const data_genres = [];
-  for (let j = 0; j < data_genres.length; j++) {
-    data_genres.push(
-      data_genres[j]
-        .sort(function (a, b) {
-          return a.vote_average - b.vote_average;
-        })
-        .reverse()
-    );
-  }*/
-  const obj = { data, genres, data_genres };
+  const obj = { data, genres, dataGenres };
   console.log({ ...obj });
   return { ...obj };
 }

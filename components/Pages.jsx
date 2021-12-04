@@ -5,23 +5,27 @@ import styles from "../styles/cards.module.css";
 import Last_view from "./Last_view";
 import Header_buttons from "./Header";
 const Pages = ({ type }) => {
-  const [data, set_data] = useState(false);
-  const [data_genre, set_data_genre] = useState(false);
-  const [genres, set_genres] = useState(false);
-  const [render_data_find, set_render_data_find] = useState(false);
-  const [render_genre, set_render_genre] = useState(0);
+  const [data, setData] = useState(false);
+  const [dataGenre, setDataGenre] = useState(false);
+  const [genres, setGenres] = useState(false);
+  const [renderDataFind, setRenderDataFind] = useState(false);
+  const [renderGenre, setRenderGenre] = useState(0);
 
   const start = async (props) => {
     //Buscar
     console.log("start", props);
     const search_items = await Filters(props);
     //--
-    set_data(search_items.data);
-    set_genres(search_items.genres);
-    set_data_genre(search_items.data_genres);
+    setData(search_items.data);
+    setGenres(search_items.genres);
+    setDataGenre(search_items.dataGenres);
+    if (localStorage.getItem(`renderGenre_${type}`)) {
+      setRenderGenre(+localStorage.getItem(`renderGenre_${type}`));
+    }
   };
   useEffect(() => {
     start(type);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const value_input = (props) => {
@@ -31,15 +35,15 @@ const Pages = ({ type }) => {
       (x) => x.title.toUpperCase().slice(0, props.length) == b
     );
     if (c) {
-      set_render_data_find(c);
+      setRenderDataFind(c);
     }
     if (props === "") {
-      set_render_data_find(false);
+      setRenderDataFind(false);
     }
   };
   const value_select = (props) => {
-    set_render_genre(props);
-    localStorage.setItem(`render_genre_${type}`, JSON.stringify(props));
+    setRenderGenre(props);
+    localStorage.setItem(`renderGenre_${type}`, props);
   };
   return (
     <div className="container">
@@ -49,14 +53,15 @@ const Pages = ({ type }) => {
           value_input={value_input}
           value_select={value_select}
           type={type}
+          atualizarSelect={renderGenre}
         />
       }
       <div className={styles.container}>
-        {data_genre && <Last_view filmes={data_genre[render_genre]} />}
-        {data_genre && Cards({ info: render_data_find, type: `${type}` })}
-        {data_genre &&
-          !render_data_find &&
-          Cards({ info: data_genre[render_genre], type: `${type}` })}
+        {data && <Last_view data={data} type={type} />}
+        {dataGenre && Cards({ info: renderDataFind, type: `${type}` })}
+        {dataGenre &&
+          !renderDataFind &&
+          Cards({ info: dataGenre[renderGenre], type: `${type}` })}
       </div>
     </div>
   );

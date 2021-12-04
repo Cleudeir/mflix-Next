@@ -18,7 +18,7 @@ function Card({ info, type }) {
       {info &&
         info.map((x, i) => {
           return (
-            <div key={i} className={styles.card}>
+            <div key={i}  className={styles.card}>
               <Link href={url(x)}>
                 <a className={styles.image}>
                   <Image

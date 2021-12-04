@@ -1,10 +1,15 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 function Play() {
   const router = useRouter();
   const id = router.query.id;
   const [base_url] = useState("https://player.uauflix.online/");
+  useEffect(() => {
+   if(id){
+    localStorage.setItem("lastView_movie",id)
+   }
+  }, [id]);
   return (
     <div style={{ width: "100%", height: "100vh", overflow: "hidden" }}>
       <div style={{ zIndex: "99", position: "fixed", width:'75px'}}>

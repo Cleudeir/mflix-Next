@@ -71,3 +71,9 @@ input::placeholder {
   top: 1px;
   border-radius: 3px;
 }
+h5{
+  margin: 5px;
+}
+h1{
+  font-size: 40px;
+}

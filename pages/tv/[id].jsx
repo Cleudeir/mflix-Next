@@ -16,6 +16,7 @@ function Play() {
   useEffect(() => {
     if (router_query.id) {
       console.log(router_query.id);
+      localStorage.setItem("lastView_tv", id);
       set_id(router_query.id);
       let storage = localStorage.getItem(id);
       if (storage) {
