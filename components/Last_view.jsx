@@ -32,7 +32,7 @@ function Last_view({ data, type }) {
           <div
             style={{
               position: "absolute",
-              top: "20px",
+              top: "10vh",
               color: "white",
               marginLeft: "20px",
               zIndex:'2'
