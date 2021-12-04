@@ -32,10 +32,11 @@ function Last_view({ data, type }) {
           <div
             style={{
               position: "absolute",
-              top: "10vh",
+              top: "5vh",
               color: "white",
               marginLeft: "20px",
-              zIndex:'2'
+              zIndex:'2',
+              maxHeight:'10vh'
             }}
           >
             <h1>{last.title}</h1>
