@@ -19,7 +19,7 @@ async function Filters(type) {
   //--
   //add Lançamentos
   genres = ["Release", ...genres];
-  dataGenres = [data.slice(0, 8), ...dataGenres];
+  dataGenres = [data.slice(0, 10), ...dataGenres];
   //--
   const obj = { data, genres, dataGenres };
   console.log({ ...obj });
