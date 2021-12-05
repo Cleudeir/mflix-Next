@@ -26,17 +26,15 @@ function Last_view({ data, type }) {
             backgroundImage: `url(${last.backdrop_path})`,
           }}
         >
-          <div className={styles.Vertical}>
-            <div className={styles.horizontal}></div>
-          </div>
+          <div className={styles.Vertical}></div>
           <div
             style={{
               position: "absolute",
               top: "5vh",
               color: "white",
               marginLeft: "20px",
-              zIndex:'2',
-              maxHeight:'10vh'
+              zIndex: "2",
+              maxHeight: "10vh",
             }}
           >
             <h1>{last.title}</h1>
