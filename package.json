@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "html-table-to-json": "^1.0.0",
-    "next": "12.0.3",
+    "next": "^12.0.7",
     "puppeteer": "^12.0.0",
     "puppeteer-core": "^12.0.0",
     "react": "17.0.2",
