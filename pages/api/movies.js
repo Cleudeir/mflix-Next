@@ -1,27 +1,25 @@
-import Request_info from "../../components/Request_info";
+/* eslint-disable global-require */
+import RequestInfo from '../../components/RequestInfo';
 
 export default async function handler(req, res) {
+  const library = await require('../../data/ids_movie.json');
 
-  const library = await require("../../data/ids_movie.json");
-
-  const fs = require("fs");
+  const fs = require('fs');
   const get = async () => {
-    let array_infos = [];
-    for (let i = 0; i < library.length; i++) {
-      let get_fetch = Request_info({ id: library[i], type: "movie" }).then(
-        (data) => {
-          return data;
-        }
+    const arrayInfos = [];
+    for (let i = 0; i < library.length; i += 1) {
+      const getFetch = RequestInfo({ id: library[i], type: 'movie' }).then(
+        (data) => data,
       );
-      array_infos.push(get_fetch);
+      arrayInfos.push(getFetch);
     }
-    return await Promise.all(array_infos).then((x) => x);
+    return Promise.all(arrayInfos).then((x) => x);
   };
-  let result_get = await get();
+  const resultGet = await get();
   fs.writeFileSync(
 
-    "./data/data_movie.json",
-    JSON.stringify(result_get.filter((x) => x !== false))
+    './data/data_movie.json',
+    JSON.stringify(resultGet.filter((x) => x !== false)),
   );
-  res.status(200).json(result_get.filter((x) => x !== false));
+  res.status(200).json(resultGet.filter((x) => x !== false));
 }

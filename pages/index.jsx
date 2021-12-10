@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
-import Router from "next/router";
-export default function Home() {
+import React, { useEffect } from 'react';
+import Router from 'next/router';
+
+const Home = function Home() {
   useEffect(() => {
     const { pathname } = Router;
-    if (pathname == "/") {
-      Router.push("/movie");
+    if (pathname === '/') {
+      Router.push('/movie');
     }
   });
-  return <div></div>;
-}
+
+  return <div>hello world</div>;
+};
+export default Home;

@@ -1,10 +1,9 @@
-import Pages from "../../components/Pages";
+/* eslint-disable react/react-in-jsx-scope */
+import Pages from '../../components/Pages';
 
-const Movies = () => {
+const Movies = function Movies() {
   return (
-    <>
-      <Pages type="movie" />
-    </>
+    <Pages type="movie" />
   );
 };
 

@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
-import Filters from "./Filters";
-import Cards from "./Cards";
-import styles from "../styles/cards.module.css";
-import Last_view from "./Last_view";
-import Header_buttons from "./Header";
-const Pages = ({ type }) => {
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from 'react';
+import Filters from './Filters';
+import Cards from './Cards';
+import styles from '../styles/cards.module.css';
+import LastView from './Last_view';
+import HeaderButtons from './Header';
+
+const Pages = function Pages({ type }) {
   const [data, setData] = useState(false);
   const [dataGenre, setDataGenre] = useState(false);
   const [genres, setGenres] = useState(false);
@@ -12,56 +15,50 @@ const Pages = ({ type }) => {
   const [renderGenre, setRenderGenre] = useState(0);
 
   const start = async (props) => {
-    //Buscar
-    console.log("start", props);
-    const search_items = await Filters(props);
+    // Buscar
+    const searchItems = await Filters(props);
     //--
-    setData(search_items.data);
-    setGenres(search_items.genres);
-    setDataGenre(search_items.dataGenres);
+    setData(searchItems.data);
+    setGenres(searchItems.genres);
+    setDataGenre(searchItems.dataGenres);
     if (localStorage.getItem(`renderGenre_${type}`)) {
       setRenderGenre(+localStorage.getItem(`renderGenre_${type}`));
     }
   };
   useEffect(() => {
     start(type);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const value_input = (props) => {
-    console.log(props);
-    let b = props.toUpperCase();
-    let c = data.filter(
-      (x) => x.title.toUpperCase().slice(0, props.length) == b
+  const valueInput = (props) => {
+    const b = props.toUpperCase();
+    const c = data.filter(
+      (x) => x.title.toUpperCase().slice(0, props.length) === b,
     );
     if (c) {
       setRenderDataFind(c);
     }
-    if (props === "") {
+    if (props === '') {
       setRenderDataFind(false);
     }
   };
-  const value_select = (props) => {
+  const valueSelect = (props) => {
     setRenderGenre(props);
     localStorage.setItem(`renderGenre_${type}`, props);
   };
   return (
     <div className="container">
-      {
-        <Header_buttons
-          genres={genres}
-          value_input={value_input}
-          value_select={value_select}
-          type={type}
-          atualizarSelect={renderGenre}
-        />
-      }
+      <HeaderButtons
+        genres={genres}
+        valueInput={valueInput}
+        valueSelect={valueSelect}
+        type={type}
+        atualizarSelect={renderGenre}
+      />
       <div className={styles.container}>
-        {data && <Last_view data={data} type={type} />}
+        {data && <LastView data={data} type={type} />}
         {dataGenre && Cards({ info: renderDataFind, type: `${type}` })}
-        {dataGenre &&
-          !renderDataFind &&
-          Cards({ info: dataGenre[renderGenre], type: `${type}` })}
+        {dataGenre
+          && !renderDataFind
+          && Cards({ info: dataGenre[renderGenre], type: `${type}` })}
       </div>
     </div>
   );
