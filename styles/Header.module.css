@@ -1,7 +1,7 @@
-.container{
-    display: flex;
-    background-color: var(--cor-02);
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    width: 100%;
-  }
+.container {
+  display: flex;
+  background-color: var(--cor-02);
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+}

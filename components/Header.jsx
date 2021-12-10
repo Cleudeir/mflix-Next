@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "../styles/Header.module.css";
 function Header_buttons({ genres, value_input, value_select, type, atualizarSelect }) {
+
   return (
     <div className={styles.container}>
       <div
@@ -33,7 +34,6 @@ function Header_buttons({ genres, value_input, value_select, type, atualizarSele
           className="myButton"
           type="text"
           placeholder="Search"
-          
           onChange={(e) => {
             value_input(e.target.value);
           }}

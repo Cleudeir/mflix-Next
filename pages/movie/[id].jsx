@@ -1,27 +1,31 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+
+import Styles from "../../styles/video.module.css"
 function Play() {
   const router = useRouter();
   const id = router.query.id;
   const [base_url] = useState("https://player.uauflix.online/");
   useEffect(() => {
-   if(id){
-    localStorage.setItem("lastView_movie",id)
-   }
+
+    if (id) {
+      localStorage.setItem("lastView_movie", id);
+    }
   }, [id]);
   return (
-    <div style={{ width: "100%", height: "100vh", overflow: "hidden" }}>
-      <div style={{ zIndex: "99", position: "fixed", width:'75px'}}>
+    <div className={Styles.container}>
+      <div  className={Styles.header}>
         <Link href="/movie">
           <a className="myButton">Voltar</a>
         </Link>
       </div>
       <iframe
-        style={{ width: "100%", height: "100vh", overflow: "hidden" }}
+
+      className={Styles.iframe}
         rel="preload"
         autoPlay
-        allow="autoplay; encrypted-media; preload"
+        allow="autoplay; encrypted-media;"
         preload="auto"
         sandbox="allow-scripts  allow-same-origin"
         title="Mflix"

@@ -11,6 +11,7 @@ function Crawling(req, res) {
               executablePath: await chrome.executablePath,
               headless: chrome.headless,
             }
+
           : {}
       );
       const page = await browser.newPage();
@@ -21,8 +22,11 @@ function Crawling(req, res) {
       });
       const mount = "<table>" + table + "</table>";
 
+      //html to json
       const json = await HtmlTableToJson.parse(mount);
       const result = await json._results[0].reverse();
+
+      //--
       const array_id_sort = [];
       const result_ids = [];
       if (props.type === "movie") {
@@ -36,6 +40,7 @@ function Crawling(req, res) {
           .filter((x) => x.date >= 2021)
           .filter((x) => x !== false);
         result_filter.map((x) => result_ids.push(x.id));
+
         fs.writeFileSync("./data/ids_movie.json", JSON.stringify(result_ids));
       }
       //--

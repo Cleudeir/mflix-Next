@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Styles from "../../styles/video.module.css"
+
 function Play() {
   const router = useRouter();
   const router_query = router.query;
@@ -29,8 +31,21 @@ function Play() {
       const array_seasons = [];
       for (let i = 0; i < info.seasons.length; i++) {
         for (let j = 0; j < info.seasons[i]; j++) {
+
+          let name1;
+          let name2;
+          if(i<9){
+            name1 = "S0" + (i + 1) 
+          }else{
+            name1 = "S" + (i + 1) 
+          }
+          if(j<9){
+            name2 = " - EP0" + (j + 1)
+          }else{
+            name2 = " - EP" + (j + 1)
+          }
           array_seasons.push({
-            name: "S" + (i + 1) + "EP" + (j + 1),
+            name: name1+name2,
             id: "/" + (i + 1) + "/" + (j + 1),
           });
         }
@@ -43,8 +58,9 @@ function Play() {
   //const [base_url] = useState("https://play.midiaflixhd.com/");
   console.log(seasons);
   return (
-    <div style={{ width: "100%", height: "100vh", overflow: "hidden" }}>
-      <div style={{ zIndex: "99", position: "fixed", display: "flex" }}>
+
+    <div className={Styles.container}>
+       <div  className={Styles.header}>
         <Link href="/tv">
           <a style={{ width: "75px" }} className="myButton">
             Home
@@ -99,10 +115,10 @@ function Play() {
       </div>
       {id && seasons && (
         <iframe
-          style={{ width: "100%", height: "100vh" }}
+        className={Styles.iframe}
           rel="preload"
           autoPlay
-          allow="autoplay; encrypted-media; preload"
+          allow="autoplay; encrypted-media;"
           preload="auto"
           sandbox="allow-scripts  allow-same-origin"
           title="Mflix"

@@ -1,75 +1,75 @@
 .container {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    min-height: 100vh;
-    height: auto;
-    background-color: var(--cor-02);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  background-color: var(--cor-02);
 }
 
 .list_cards {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    width: 100%;
-    height: auto;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    background-color: var(--cor-01);
-    border-radius: 5px;
-    height: 310px;
-    width: 193px;
-    justify-content: flex-start;
-    align-items: center;
-    box-shadow: 2px 4px 24px 1px rgba(0, 0, 0, 0.62);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  background-color: var(--cor-01);
+  border-radius: 5px;
+  height: 310px;
+  width: 193px;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 2px 4px 24px 1px rgba(0, 0, 0, 0.62);
 }
 
 .image {
-    border-radius: 10px;
-    padding: 4px;
+  border-radius: 10px;
+  padding: 4px;
 }
 
 .h6 {
-    width: 96%;
-    text-align: center;
-    background-color: rgba(255, 255, 255, .8);
-    margin-top: -10px;
-    z-index: 1;
+  width: 96%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-top: -10px;
+  z-index: 1;
 }
 
 .category {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 @media screen and (max-width: 600px) {
-    .card {
-        height: 260px;
-        width: 163px;
-        margin: 3px;
-    }
+  .card {
+    height: 260px;
+    width: 163px;
+    margin: 3px;
+  }
 }
 
 @media screen and (min-width: 600px) {
-    .card {
-        transform: scale(.95);
-        transition: .3s;
-    }
+  .card {
+    transform: scale(0.95);
+    transition: 0.3s;
+  }
 
-    .card:hover {
-        transform: scale(1.0);
-        transition: .3s;
-    }
+  .card:hover {
+    transform: scale(1);
+    transition: 0.3s;
+  }
 }
