@@ -64,7 +64,7 @@ export default async function RequestInfo({ id, type }) {
       // buscar informação detalhada das temporadas
       const promisse_seasons_details = [];
       for (let i = 1; i <= number_of_seasons; i += 1) {
-        const search_details = fetch(
+        const search_details = await fetch(
           `${API_BASE}/tv/${id}/season/${i}?api_key=${API_KEY}`,
         )
           .then((response) => response.json())
@@ -77,9 +77,7 @@ export default async function RequestInfo({ id, type }) {
       const info_seasons = promisse_seasons_details;
       const seasons = [];
       for (let j = 0; j < info_seasons.length; j += 1) {
-        if (info_seasons && info_seasons[j] && info_seasons[j].episodes) {
-          seasons.push(info_seasons[j].episodes.length);
-        }
+        seasons.push(info_seasons[j].episodes.length);
       }
       return {
         seasons,
