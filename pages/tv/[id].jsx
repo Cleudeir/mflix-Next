@@ -58,7 +58,7 @@ const Play = function Play() {
     <div className={Styles.container}>
       <div className={Styles.header}>
         <Link href="/tv">
-          <a style={{ width: '75px' }} className="myButton">
+          <a href="replace" style={{ width: '75px' }} className="myButton">
             Home
           </a>
         </Link>
