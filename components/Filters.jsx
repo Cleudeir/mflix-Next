@@ -1,5 +1,3 @@
-/* eslint-disable no-loop-func */
-/* eslint-disable global-require */
 async function Filters(type) {
   // library get
   let library = '';

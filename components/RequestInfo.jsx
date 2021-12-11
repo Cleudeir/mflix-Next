@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-export default async function Request_info({ id, type }) {
+export default async function RequestInfo({ id, type }) {
   const API_KEY = '5417af578f487448df0d4932bc0cc1a5';
   const API_BASE = 'https://api.themoviedb.org/3';
 
@@ -78,7 +77,9 @@ export default async function Request_info({ id, type }) {
       const info_seasons = promisse_seasons_details;
       const seasons = [];
       for (let j = 0; j < info_seasons.length; j += 1) {
-        seasons.push(info_seasons[j].episodes.length);
+        if (info_seasons && info_seasons[j] && info_seasons[j].episodes) {
+          seasons.push(info_seasons[j].episodes.length);
+        }
       }
       return {
         seasons,

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function go() {
   const [status, setStatus] = useState('Atualizando....');
+
   async function update() {
     //---
     await fetch('/api/crawling')
@@ -21,9 +22,9 @@ function go() {
       .then((resp) => resp.json())
       .then((data) => data)
       .catch((error) => error);
-    setStatus('tvs, está atualizado, acabou');
+    setStatus('tvs, está atualizado');
   }
-  setStatus('Acabou, está atualizado');
+
   useEffect(() => {
     update();
   }, []);

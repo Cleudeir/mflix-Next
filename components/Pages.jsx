@@ -1,5 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 import Filters from './Filters';
 import Cards from './Cards';

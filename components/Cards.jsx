@@ -1,6 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable consistent-return */
-/* eslint-disable react/prop-types */
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/cards.module.css';
@@ -16,6 +13,7 @@ const Card = function Card({ info, type }) {
       url = `/${type}/${x.imdb_id}`;
       return url;
     }
+    return false;
   };
 
   return (
