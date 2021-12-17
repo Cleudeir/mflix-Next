@@ -15,7 +15,7 @@ height: 100vh;
 overflow: hidden;
 }
 @media screen and (max-device-width: 600px) and (orientation: portrait) {
-.iframe ,.header {
+.iframe {
 position: absolute;
 transform: rotate(90deg);
 transform-origin: bottom left;

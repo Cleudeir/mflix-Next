@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-export default async function Request_info({ id, type }) {
+export default async function RequestInfo({ id, type }) {
   const API_KEY = '5417af578f487448df0d4932bc0cc1a5';
   const API_BASE = 'https://api.themoviedb.org/3';
 
@@ -65,7 +64,7 @@ export default async function Request_info({ id, type }) {
       // buscar informação detalhada das temporadas
       const promisse_seasons_details = [];
       for (let i = 1; i <= number_of_seasons; i += 1) {
-        const search_details = fetch(
+        const search_details = await fetch(
           `${API_BASE}/tv/${id}/season/${i}?api_key=${API_KEY}`,
         )
           .then((response) => response.json())

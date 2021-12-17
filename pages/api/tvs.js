@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 import RequestInfo from '../../components/RequestInfo';
 
 export default async function handler(req, res) {

@@ -1,6 +1,4 @@
-/* eslint-disable array-callback-return */
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable global-require */
 /* eslint-disable no-undef */
 function Crawling(req, res) {
   const puppeteer = require('puppeteer');
@@ -37,6 +35,7 @@ function Crawling(req, res) {
             id: x.IMDB,
             date: +x['Data de publicação'].slice(0, 4),
           });
+          return false;
         });
         const resultFilter = arrayIdSort
           .filter((x) => x.date >= 2021)
@@ -52,6 +51,7 @@ function Crawling(req, res) {
             id: x['ID - THEMOVIEDB'],
             date: +x['Última atualização'].slice(0, 4),
           });
+          return false;
         });
         const resultFilter = arrayIdSort
           .filter((x) => x.date >= 2019)

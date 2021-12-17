@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function go() {
   const [status, setStatus] = useState('Atualizando....');
@@ -24,7 +24,6 @@ function go() {
       .catch((error) => error);
     setStatus('tvs, está atualizado');
   }
-  setStatus('Acabou, está atualizado');
 
   useEffect(() => {
     update();
