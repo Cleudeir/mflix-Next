@@ -10,12 +10,15 @@ const Play = function Play() {
   //
   const library = require('../../data/data_tv.json');
   //---
-  const [baseUrl] = useState('https://player.uauflix.online/tv');
-  //---
+  const [baseUrl] = useState(
+    [
+      'https://player.uauflix.online/tv',
+    ],
+  );
   const [id, setId] = useState(false);
   const [seasons, setSeasons] = useState(false);
   const [ep, setEp] = useState(0);
-
+  const [index, setIndex] = useState(0);
   useEffect(() => {
     if (routerQuery.id) {
       localStorage.setItem('lastView_tv', id);
@@ -52,7 +55,7 @@ const Play = function Play() {
       setSeasons(arraySeasons);
     }
   }, [routerQuery, id]);
-  // const [base_url] = useState("https://play.midiaflixhd.com/");
+
   return (
 
     <div className={Styles.container}>
@@ -62,6 +65,11 @@ const Play = function Play() {
             Home
           </a>
         </Link>
+        <select className="myButton" onChange={(e) => { setIndex(e.target.value); }}>
+          <option value={0}>
+            Server 01
+          </option>
+        </select>
         {seasons && (
           <select
             className="myButton"
@@ -118,7 +126,7 @@ const Play = function Play() {
           allowFullScreen
           scrolling="no"
           frameBorder="0"
-          src={`${baseUrl}/${id}/${seasons[ep].id}/dub`}
+          src={`${baseUrl[index]}/${id}/${seasons[ep].id}/dub`}
         />
       )}
     </div>

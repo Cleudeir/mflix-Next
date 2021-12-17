@@ -7,7 +7,13 @@ import Styles from '../../styles/video.module.css';
 const Play = function Play() {
   const router = useRouter();
   const { id } = router.query;
-  const [baseUrl] = useState('https://player.uauflix.online/');
+  const [baseUrl] = useState(
+    [
+      'https://player.uauflix.online/',
+    ],
+  );
+  const [index, setIndex] = useState(0);
+
   useEffect(() => {
     if (id) {
       localStorage.setItem('lastView_movie', id);
@@ -19,6 +25,11 @@ const Play = function Play() {
         <Link href="/movie">
           <a href="replace" className="myButton">Voltar</a>
         </Link>
+        <select className="myButton" onChange={(e) => { setIndex(e.target.value); }}>
+          <option value={0}>
+            Server 01
+          </option>
+        </select>
       </div>
       <iframe
         className={Styles.iframe}
@@ -30,9 +41,10 @@ const Play = function Play() {
         allowFullScreen
         scrolling="no"
         frameBorder="0"
-        src={baseUrl + id}
+        src={baseUrl[index] + id}
       />
     </div>
+
   );
 };
 
