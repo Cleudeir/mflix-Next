@@ -12,12 +12,14 @@ const Play = function Play() {
   const [baseUrl] = useState(
     [
       'https://player.uauflix.online/tv',
+      'https://database.gdriveplayer.us//player.php?type=series&imdb=',
     ],
   );
   const [id, setId] = useState(false);
   const [seasons, setSeasons] = useState(false);
   const [ep, setEp] = useState(0);
-  const [index, setIndex] = useState(0);
+  const [server, setIndex] = useState(0);
+
   useEffect(() => {
     if (routerQuery.id) {
       localStorage.setItem('lastView_tv', id);
@@ -114,7 +116,8 @@ const Play = function Play() {
           Next
         </button>
       </div>
-      {id && seasons && (
+
+      {server === 0 && id && seasons && (
         <iframe
           className={Styles.iframe}
           autoPlay
@@ -125,7 +128,21 @@ const Play = function Play() {
           allowFullScreen
           scrolling="no"
           frameBorder="0"
-          src={`${baseUrl[index]}/${id}/${seasons[ep].id}/dub`}
+          src={`${baseUrl[server]}/${id}/${seasons[ep].id}/dub`}
+        />
+      )}
+      {server === 1 && id && seasons && (
+        <iframe
+          className={Styles.iframe}
+          autoPlay
+          allow="autoplay; encrypted-media;"
+          preload="auto"
+          sandbox="allow-scripts  allow-same-origin"
+          title="Mflix"
+          allowFullScreen
+          scrolling="no"
+          frameBorder="0"
+          src={`${baseUrl[server]}${id}&season=${id}&episode=${id}`}
         />
       )}
     </div>

@@ -10,6 +10,7 @@ const Play = function Play() {
   const [baseUrl] = useState(
     [
       'https://player.uauflix.online/',
+      'http://database.gdriveplayer.us/player.php?imdb=',
     ],
   );
   const [index, setIndex] = useState(0);
@@ -28,6 +29,9 @@ const Play = function Play() {
         <select className="myButton" onChange={(e) => { setIndex(e.target.value); }}>
           <option value={0}>
             Server 01
+          </option>
+          <option value={1}>
+            Server 02
           </option>
         </select>
       </div>
