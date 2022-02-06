@@ -7,6 +7,7 @@ const Home = function Home() {
     if (pathname === '/') {
       Router.push('/movie');
     }
+    localStorage.clear();
   });
 
   return <div>hello world</div>;
