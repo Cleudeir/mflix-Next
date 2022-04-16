@@ -43,6 +43,9 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+      "no-promise-executor-return":0,          
+      "react/no-array-index-key":0
+ 
     }
 }

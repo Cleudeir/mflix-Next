@@ -1,26 +1,14 @@
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '../styles/lastView.module.css';
 
 const LastView = function LastView({ data, type }) {
-  const [last, setLast] = useState(false);
-  useEffect(() => {
-    const storage = localStorage.getItem(`lastView_${type}`);
-    if (storage) {
-      const filter = data.filter((x) => x.imdb_id === storage)[0];
-      setLast(filter);
-    } else {
-      setLast(data[0]);
-    }
-  }, []);
-
   return (
-    last && (
+    data && (
       <div className={styles.container}>
         <section
           className={styles.background}
           style={{
-            backgroundImage: `url(${last.backdrop_path})`,
+            backgroundImage: `url(${data.backdrop_path})`,
           }}
         >
           <div className={styles.Vertical} />
@@ -34,27 +22,23 @@ const LastView = function LastView({ data, type }) {
               maxHeight: '10vh',
             }}
           >
-            <h1>{last.title}</h1>
+            <h1>{data.title}</h1>
             <p style={{ width: '320px' }}>
-              {last.overview.slice(0, 250)}
+              {data.overview.slice(0, 250)}
               ...
             </p>
-            <Link href={`/${type}/${last.imdb_id}`}>
+            <Link href={`/${type}/${data.imdb_id}`}>
               <a href="replace" style={{ width: '75px' }} className="myButton">
                 Play
               </a>
             </Link>
 
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <h5>
-                Rate:
-                {last.vote_average}
-              </h5>
-              -
-              <h5>
-                Genre:
-                {last.genres}
-              </h5>
+
+              {+data.vote_average === 0 ? '' : `Rate: ${data.vote_average}` }
+
+              { ` Genre: ${data.genres}`}
+
             </div>
           </div>
         </section>

@@ -6,38 +6,31 @@ import LastView from './Last_view';
 import HeaderButtons from './Header';
 
 const Pages = function Pages({ type }) {
-  const [data, setData] = useState(false);
-  const [dataGenre, setDataGenre] = useState(false);
-  const [genres, setGenres] = useState(false);
-  const [renderDataFind, setRenderDataFind] = useState(false);
+  const [useData, setData] = useState(false);
   const [renderGenre, setRenderGenre] = useState(0);
+  const [useBackGround, setBackGround] = useState(null);
 
   const start = async (props) => {
     // Buscar
-    const searchItems = await Filters(props);
+    const { dataGenres } = await Filters(props);
     //--
-    setData(searchItems.data);
-    setGenres(searchItems.genres);
-    setDataGenre(searchItems.dataGenres);
+    setData(dataGenres);
     if (localStorage.getItem(`renderGenre_${type}`)) {
       setRenderGenre(+localStorage.getItem(`renderGenre_${type}`));
+    }
+    const storage = localStorage.getItem(`lastView_${type}`);
+    if (storage) {
+      const [[filter]] = dataGenres.map((x) => x.filter((y) => y.imdb_id === storage))
+        .filter((x) => x.length > 0);
+      setBackGround(filter);
+    } else {
+      setBackGround(dataGenres[0][0]);
     }
   };
   useEffect(() => {
     start(type);
   }, []);
-  const valueInput = (props) => {
-    const b = props.toUpperCase();
-    const c = data.filter(
-      (x) => x.title.toUpperCase().slice(0, props.length) === b,
-    );
-    if (c) {
-      setRenderDataFind(c);
-    }
-    if (props === '') {
-      setRenderDataFind(false);
-    }
-  };
+
   const valueSelect = (props) => {
     setRenderGenre(props);
     localStorage.setItem(`renderGenre_${type}`, props);
@@ -45,18 +38,13 @@ const Pages = function Pages({ type }) {
   return (
     <div className="container">
       <HeaderButtons
-        genres={genres}
-        valueInput={valueInput}
         valueSelect={valueSelect}
         type={type}
         atualizarSelect={renderGenre}
       />
       <div className={styles.container}>
-        {data && <LastView data={data} type={type} />}
-        {dataGenre && Cards({ info: renderDataFind, type: `${type}` })}
-        {dataGenre
-          && !renderDataFind
-          && Cards({ info: dataGenre[renderGenre], type: `${type}` })}
+        {useBackGround && <LastView data={useBackGround} type={type} />}
+        {useData && Cards({ data: useData, type: `${type}`, setBackGround })}
       </div>
     </div>
   );

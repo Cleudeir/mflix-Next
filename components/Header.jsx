@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from '../styles/Header.module.css';
 
 const HeaderButtons = function HeaderButtons({
-  genres, valueInput, valueSelect, type, atualizarSelect,
+  type,
 }) {
   return (
     <div className={styles.container}>
@@ -31,7 +31,7 @@ const HeaderButtons = function HeaderButtons({
           display: 'flex',
         }}
       >
-        <input
+        {/* <input
           style={{ width: '80px' }}
           className="myButton"
           type="text"
@@ -39,23 +39,7 @@ const HeaderButtons = function HeaderButtons({
           onChange={(e) => {
             valueInput(e.target.value);
           }}
-        />
-        <select
-          name="select"
-          value={atualizarSelect}
-          className="myButton"
-          onChange={(e) => {
-            valueSelect(e.target.value);
-            valueInput('');
-          }}
-        >
-          {genres
-              && genres.map((x, i) => (
-                <option key={x} value={i}>
-                  {x}
-                </option>
-              ))}
-        </select>
+        /> */}
       </div>
     </div>
   );

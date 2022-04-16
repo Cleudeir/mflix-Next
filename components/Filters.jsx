@@ -26,7 +26,7 @@ async function Filters(type) {
   //--
   // add Lançamentos
   genres = ['Release', ...genres];
-  dataGenres = [data.slice(0, 16), ...dataGenres];
+  dataGenres = [data.slice(0, 15), ...dataGenres];
   //--
   const obj = { data, genres, dataGenres };
   return { ...obj };

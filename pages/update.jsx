@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function go() {
   const [status, setStatus] = useState('Atualizando....');
 
@@ -9,20 +13,22 @@ function go() {
       .then((resp) => resp.json())
       .then((data) => data)
       .catch((error) => error);
-    setStatus('crawling, está atualizado');
+    setStatus('01 - Crawling, está atualizado');
     //--
     await fetch('/api/movies')
       .then((resp) => resp.json())
       .then((data) => data)
       .catch((error) => error);
 
-    setStatus('movies, está atualizado');
+    setStatus('02 - movies, está atualizado');
     //--
     await fetch('/api/tvs')
       .then((resp) => resp.json())
       .then((data) => data)
       .catch((error) => error);
-    setStatus('tvs, está atualizado');
+    setStatus('03 - tvs, está atualizado');
+    await sleep(1000);
+    setStatus('Tudo atualizado!');
   }
 
   useEffect(() => {

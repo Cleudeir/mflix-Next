@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/cards.module.css';
 
-const Card = function Card({ info, type }) {
+const Card = function Card({ data, type, setBackGround }) {
   const Url = (x) => {
     let url;
     if (type === 'movie') {
@@ -17,27 +17,47 @@ const Card = function Card({ info, type }) {
   };
 
   return (
-    <div className={styles.list_cards}>
-      {info
-        && info.map((x) => (
-          <div key={x.title} className={styles.card}>
-            <Link href={Url(x)}>
-              <a href="replace" className={styles.image}>
-                <Image
-                  src={x.poster_path}
-                  width={193}
-                  height={300}
-                  layout="intrinsic"
-                  alt={x.title}
-                />
-              </a>
-            </Link>
-            <h6 className={styles.h6}>
-              {x.title.slice(0, 25)}
-              {' '}
-            </h6>
+    <div className={styles.container}>
+      {data.map((info, i) => (
+        <div key={i}>
+          <h1 style={{ color: 'white' }}>
+            {
+
+              i === 0 ? 'Release' : info[0].genres
+
+            }
+          </h1>
+          <div className={styles.conteinerList} key={i}>
+            <div className={styles.list_cards}>
+              { info.map((x, j) => (
+                <div
+                  key={x.title + j}
+                  className={styles.card}
+                  onMouseOver={() => { setBackGround(x); }}
+                  onFocus={() => { setBackGround(x); }}
+                >
+                  <Link href={Url(x)}>
+                    <a href="replace">
+                      <Image
+                        className={styles.image}
+                        src={x.poster_path}
+                        width={193}
+                        height={300}
+                        layout="intrinsic"
+                        alt={x.title}
+                      />
+                    </a>
+                  </Link>
+                  <h6 className={styles.h6}>
+                    {x.title.slice(0, 15)}
+                  </h6>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+        </div>
+
+      ))}
     </div>
   );
 };
