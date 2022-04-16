@@ -22,7 +22,7 @@ const LastView = function LastView({ data, type }) {
               maxHeight: '10vh',
             }}
           >
-            <h1>{data.title}</h1>
+            <h1>{data.title.slice(0, 16)}</h1>
             <p style={{ width: '320px' }}>
               {data.overview.slice(0, 250)}
               ...

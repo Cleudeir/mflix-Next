@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Router from 'next/router';
+import Head from 'next/head';
 
 const Home = function Home() {
   useEffect(() => {
@@ -10,6 +11,12 @@ const Home = function Home() {
     localStorage.clear();
   });
 
-  return <div>hello world</div>;
+  return (
+    <div>
+      <Head>
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+    </div>
+  );
 };
 export default Home;

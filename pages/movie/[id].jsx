@@ -26,14 +26,14 @@ const Play = function Play() {
         <Link href="/movie">
           <a href="replace" className="myButton">Voltar</a>
         </Link>
-        <select className="myButton" onChange={(e) => { setIndex(e.target.value); }}>
-          <option value={0}>
-            Server 01
-          </option>
-          <option value={1}>
-            Server 02
-          </option>
-        </select>
+        {/* <select className="myButton" onChange={(e) => { setIndex(e.target.value); }}>
+        <option value={0}>
+          Server 01
+        </option>
+        <option value={1}>
+          Server 02
+        </option>
+  </select> */}
       </div>
       <iframe
         className={Styles.iframe}

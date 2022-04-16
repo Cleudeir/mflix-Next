@@ -44,8 +44,8 @@
             "error",
             "always"
         ],
-      "no-promise-executor-return":0,          
-      "react/no-array-index-key":0
- 
+        "no-promise-executor-return":0,          
+        "react/no-array-index-key":0,  
+        "no-unused-vars":0
     }
 }

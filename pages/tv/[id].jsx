@@ -66,11 +66,13 @@ const Play = function Play() {
             Home
           </a>
         </Link>
+        {/*
         <select className="myButton" onChange={(e) => { setIndex(e.target.value); }}>
           <option value={0}>
             Server 01
           </option>
-        </select>
+        </select> */
+        }
         {seasons && (
           <select
             className="myButton"

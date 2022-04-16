@@ -1,4 +1,4 @@
-async function Filters(type) {
+async function Filters({ type }) {
   // library get
   let library = '';
   if (type === 'movie') {
@@ -20,13 +20,18 @@ async function Filters(type) {
   //--
   // Criar Array categorizado por gênero
   let dataGenres = [];
+  const vote = data.filter((x) => +x.vote_average > 6);
+  console.log('vote', vote.length);
   for (let i = 0; i < genres.length; i += 1) {
-    dataGenres.push(data.filter((x) => x.genres === genres[i]));
+    const genre = vote.filter((x) => x.genres === genres[i]);
+    if (genre.length > 3) {
+      dataGenres.push(genre.slice(0, 30));
+    }
   }
   //--
   // add Lançamentos
   genres = ['Release', ...genres];
-  dataGenres = [data.slice(0, 15), ...dataGenres];
+  dataGenres = [data.slice(0, 30), ...dataGenres];
   //--
   const obj = { data, genres, dataGenres };
   return { ...obj };
