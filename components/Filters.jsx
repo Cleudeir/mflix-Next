@@ -21,7 +21,6 @@ async function Filters({ type }) {
   // Criar Array categorizado por gênero
   let dataGenres = [];
   const vote = data.filter((x) => +x.vote_average > 6);
-  console.log('vote', vote.length);
   for (let i = 0; i < genres.length; i += 1) {
     const genre = vote.filter((x) => x.genres === genres[i]);
     if (genre.length > 3) {
@@ -31,7 +30,10 @@ async function Filters({ type }) {
   //--
   // add Lançamentos
   genres = ['Release', ...genres];
-  dataGenres = [data.slice(0, 30), ...dataGenres];
+  const New = [];
+
+  data.slice(0, 30).forEach((x) => (New.push({ ...x, genres: 'New' })));
+  dataGenres = [New, ...dataGenres];
   //--
   const obj = { data, genres, dataGenres };
   return { ...obj };

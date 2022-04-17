@@ -3,7 +3,6 @@ import Pages from '../../components/Pages';
 
 export async function getStaticProps(context) {
   // Call an external API endpoint to get posts.
-  console.log(context);
   // You can use any data fetching library
   const type = 'movie';
   const { dataGenres } = await Filters({ type });

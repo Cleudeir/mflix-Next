@@ -10,7 +10,6 @@ const Pages = function Pages({ data, type }) {
 
   const start = async () => {
     // Buscar
-
     setData(data);
 
     const storage = localStorage.getItem(`lastView_${type}`);
@@ -22,6 +21,25 @@ const Pages = function Pages({ data, type }) {
       setBackGround(data[0][0]);
     }
   };
+  const search = (e) => {
+    const props = e;
+    if (props === '') {
+      setData(data);
+    } else {
+      console.log(props.length);
+      const array = [];
+      const filter = data.forEach((y) => {
+        const a = y.filter((x) => x.title.toLowerCase().includes(props.toLowerCase()));
+        if (a.length > 0) {
+          a.forEach((x) => array.push({ ...x, genres: 'Results' }));
+        }
+      });
+
+      setData([array]);
+      console.log([array]);
+    }
+  };
+
   useEffect(() => {
     start();
   }, []);
@@ -30,6 +48,7 @@ const Pages = function Pages({ data, type }) {
     <div className="container">
       <HeaderButtons
         type={type}
+        search={search}
       />
       <div className={styles.container}>
         {useBackGround && <LastView data={useBackGround} type={type} />}

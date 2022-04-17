@@ -42,7 +42,7 @@ a {
     width: 16px;
     border-radius: 8px;
     background-clip: padding-box; 
-    height: 10px;
+    height: 15px;
   }
 
   *::-webkit-scrollbar-track {

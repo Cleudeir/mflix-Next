@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import styles from '../styles/Header.module.css';
 
-const HeaderButtons = function HeaderButtons({
-  type,
-}) {
+const HeaderButtons = function HeaderButtons({ type, search }) {
   return (
     <div className={styles.container}>
       <div
@@ -31,15 +29,15 @@ const HeaderButtons = function HeaderButtons({
           display: 'flex',
         }}
       >
-        {/* <input
-          style={{ width: '80px' }}
+        <input
+          style={{ width: '140px' }}
           className="myButton"
           type="text"
           placeholder="Search"
           onChange={(e) => {
-            valueInput(e.target.value);
+            search(e.target.value);
           }}
-        /> */}
+        />
       </div>
     </div>
   );

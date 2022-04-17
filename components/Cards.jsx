@@ -18,14 +18,10 @@ const Card = function Card({ data, type, setBackGround }) {
 
   return (
     <div className={styles.container}>
-      {data.map((info, i) => (
+      {data[0].length > 0 && data.map((info, i) => (
         <div key={i}>
           <h1 style={{ color: 'white' }}>
-            {
-
-              i === 0 ? 'Release' : info[0].genres
-
-            }
+            {info[0].genres}
           </h1>
           <div className={styles.conteinerList} key={i}>
             <div className={styles.list_cards}>
