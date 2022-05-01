@@ -30,14 +30,12 @@ a {
 .container {
   width: 100%;
 }
-/* ===== Scrollbar CSS ===== */
-  /* Firefox */
+
   * {
     scrollbar-width: auto;
     scrollbar-color: var(--cor-01) #ffffff;
   }
 
-  /* Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
     width: 16px;
     border-radius: 8px;
@@ -63,6 +61,7 @@ a {
   h1 {
     padding-left: 10px;
   }
+
 .myButton {
   box-shadow: inset 0px 1px 0px 0px #7a8eb9;
   background: linear-gradient(to bottom, var(--cor-03) 5%, var(--cor-04) 100%);
