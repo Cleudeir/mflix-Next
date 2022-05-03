@@ -22,21 +22,20 @@ const Play = function Play() {
 
   useEffect(() => {
     if (router.id) {
-      const [id, season, epsode] = router.id;
-      console.log([id, season, epsode]);
+      const [idTv, season, epsode] = router.id;
+
       if (season && epsode) {
         const info = library
-          .filter((x) => x.imdb_id === id)[0].seasons
+          .filter((x) => x.imdb_id === idTv)[0].seasons
           .slice(0, season - 1)
           .reduce((a, b) => a + b, +epsode - 1);
-        console.log(info);
         setEp(info);
       }
 
-      localStorage.setItem('lastView_tv', id);
-      setId(id);
+      localStorage.setItem('lastView_tv', idTv);
+      setId(idTv);
 
-      const storage = localStorage.getItem(id);
+      const storage = localStorage.getItem(idTv);
       if (storage) {
         setEp(+storage);
       }
