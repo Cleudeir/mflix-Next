@@ -26,7 +26,6 @@ const Pages = function Pages({ data, type }) {
     if (props === '') {
       setData(data);
     } else {
-      console.log(props.length);
       const array = [];
       const filter = data.forEach((y) => {
         const a = y.filter((x) => x.title.toLowerCase().includes(props.toLowerCase()));
@@ -36,7 +35,6 @@ const Pages = function Pages({ data, type }) {
       });
 
       setData([array]);
-      console.log([array]);
     }
   };
 

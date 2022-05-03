@@ -4,15 +4,15 @@ import Link from 'next/link';
 import Styles from '../../styles/video.module.css';
 
 const Play = function Play() {
-  const router = useRouter();
-  const routerQuery = router.query;
+  const router = useRouter().query;
+
   //
   const library = require('../../data/data_tv.json');
+
   //---
   const [baseUrl] = useState(
     [
       'https://player.uauflix.online/tv',
-      'https://database.gdriveplayer.us//player.php?type=series&imdb=',
     ],
   );
   const [id, setId] = useState(false);
@@ -21,14 +21,27 @@ const Play = function Play() {
   const [server, setIndex] = useState(0);
 
   useEffect(() => {
-    if (routerQuery.id) {
+    if (router.id) {
+      const [id, season, epsode] = router.id;
+      console.log([id, season, epsode]);
+      if (season && epsode) {
+        const info = library
+          .filter((x) => x.imdb_id === id)[0].seasons
+          .slice(0, season - 1)
+          .reduce((a, b) => a + b, +epsode - 1);
+        console.log(info);
+        setEp(info);
+      }
+
       localStorage.setItem('lastView_tv', id);
-      setId(routerQuery.id);
+      setId(id);
+
       const storage = localStorage.getItem(id);
       if (storage) {
         setEp(+storage);
       }
     }
+
     if (id) {
       const info = library.filter((x) => x.imdb_id === id)[0];
       const arraySeasons = [];
@@ -55,7 +68,7 @@ const Play = function Play() {
 
       setSeasons(arraySeasons);
     }
-  }, [routerQuery, id]);
+  }, [router, id]);
 
   return (
 
@@ -87,7 +100,7 @@ const Play = function Play() {
             }}
           >
             {seasons.map((x, i) => (
-              <option Key={i} value={x.id}>
+              <option Key={x.id + i} value={x.id}>
                 {x.name}
               </option>
             ))}
@@ -119,7 +132,7 @@ const Play = function Play() {
         </button>
       </div>
 
-      {server === 0 && id && seasons && (
+      {id && seasons && (
         <iframe
           className={Styles.iframe}
           autoPlay
@@ -130,21 +143,7 @@ const Play = function Play() {
           allowFullScreen
           scrolling="no"
           frameBorder="0"
-          src={`${baseUrl[server]}/${id}/${seasons[ep].id}/dub`}
-        />
-      )}
-      {server === 1 && id && seasons && (
-        <iframe
-          className={Styles.iframe}
-          autoPlay
-          allow="autoplay; encrypted-media;"
-          preload="auto"
-          sandbox="allow-scripts  allow-same-origin"
-          title="Mflix"
-          allowFullScreen
-          scrolling="no"
-          frameBorder="0"
-          src={`${baseUrl[server]}${id}&season=${id}&episode=${id}`}
+          src={`${baseUrl[server]}/${id}${seasons[ep].id}/dub`}
         />
       )}
     </div>

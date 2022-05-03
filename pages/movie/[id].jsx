@@ -10,7 +10,6 @@ const Play = function Play() {
   const [baseUrl] = useState(
     [
       'https://player.uauflix.online/',
-      'http://database.gdriveplayer.us/player.php?imdb=',
     ],
   );
   const [index, setIndex] = useState(0);
@@ -20,6 +19,7 @@ const Play = function Play() {
       localStorage.setItem('lastView_movie', id);
     }
   }, [id]);
+
   return (
     <div className={Styles.container}>
       <div className={Styles.header}>
@@ -27,18 +27,18 @@ const Play = function Play() {
           <a href="replace" className="myButton">Voltar</a>
         </Link>
         {/* <select className="myButton" onChange={(e) => { setIndex(e.target.value); }}>
-        <option value={0}>
-          Server 01
-        </option>
-        <option value={1}>
-          Server 02
-        </option>
-  </select> */}
+          <option value={0}>
+            Server 01
+          </option>
+          <option value={1}>
+            Server 02
+          </option>
+        </select> */}
       </div>
+
       <iframe
         className={Styles.iframe}
         autoPlay
-        allow="autoplay; encrypted-media;"
         preload="auto"
         sandbox="allow-scripts  allow-same-origin"
         title="Mflix"
