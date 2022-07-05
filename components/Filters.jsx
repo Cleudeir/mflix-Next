@@ -20,7 +20,7 @@ async function Filters({ type }) {
   //--
   // Criar Array categorizado por gênero
   let dataGenres = [];
-  const vote = data.filter((x) => +x.vote_average > 6);
+  const vote = data.filter((x) => +x.vote_average > 0);
   for (let i = 0; i < genres.length; i += 1) {
     const genre = vote.filter((x) => x.genres === genres[i]);
     if (genre.length > 3) {

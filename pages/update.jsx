@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react';
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 function go() {
   const [status, setStatus] = useState('Atualizando....');
 
@@ -27,7 +23,6 @@ function go() {
       .then((data) => data)
       .catch((error) => error);
     setStatus('03 - tvs, está atualizado');
-    await sleep(1000);
     setStatus('Tudo atualizado!');
   }
 

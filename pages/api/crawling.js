@@ -52,11 +52,11 @@ function Crawling(req, res) {
                     return false;
                   });
                    resultFilter =  arrayIdSort
-                    .filter((x) => x.date >= 2019)
+                    .filter((x) => x.date >= 2021)
                     .filter((x) => x !== false);
                   resultFilter.map((x) => resultIds.push(x.id));
                   console.log(resultIds)
-                   fs.writeFileSync('./data/ids_tv.json', JSON.stringify(resultIds));
+                  fs.writeFileSync('./data/ids_tv.json', JSON.stringify(resultIds));
                 }               
             }
             await done();
