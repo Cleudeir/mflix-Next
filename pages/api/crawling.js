@@ -1,69 +1,77 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 function Crawling(req, res) {
-  const puppeteer = require('puppeteer');
-  const HtmlTableToJson = require('html-table-to-json');
-  const fs = require('fs');
+ 
   (async () => {
+    console.log("Crawling")
     const search = async (props) => {
-      const browser = await puppeteer.launch(
-        process.env.NODE_ENV === 'production'
-          ? {
-            args: chrome.args,
-            executablePath: await chrome.executablePath,
-            headless: chrome.headless,
+    let arrayIdSort = [];
+    let resultIds = [];
+    let resultFilter = [];
+    const Crawler = require("crawler");
+    const fs = require('fs');
+    const HtmlTableToJson = require('html-table-to-json');
+
+    const c = new Crawler({
+        maxConnections : 5,
+        // This will be called for each crawled page
+        callback : async function (error, res, done) {
+            if(error){
+                console.log(error);
+            }else{
+              const $ = res.$;
+              const table = $('table').html();
+              const mount = `<table>${table}</table>`;
+               // html to json
+               const json = HtmlTableToJson.parse(mount);
+               const result = json._results[0].reverse();
+               //--
+               
+                if (props.type === 'movie') {
+                  result.map((x) => {
+                    arrayIdSort.push({
+                      id: x.IMDB,
+                      date: +x['Data de publicação'].slice(0, 4),
+                    });
+                    return false;
+                  });
+                   resultFilter = arrayIdSort
+                    .filter((x) => x.date >= 2021)
+                    .filter((x) => x !== false);
+                  resultFilter.map((x) => resultIds.push(x.id));
+                  console.log(resultIds)
+                  fs.writeFileSync('./data/ids_movie.json', JSON.stringify(resultIds));
+                }
+                //--
+                if (props.type === 'tv') {
+                  result.map((x) => {
+                    arrayIdSort.push({
+                      id: x['ID - THEMOVIEDB'],
+                      date: +x['Última atualização'].slice(0, 4),
+                    });
+                    return false;
+                  });
+                   resultFilter =  arrayIdSort
+                    .filter((x) => x.date >= 2019)
+                    .filter((x) => x !== false);
+                  resultFilter.map((x) => resultIds.push(x.id));
+                  console.log(resultIds)
+                   fs.writeFileSync('./data/ids_tv.json', JSON.stringify(resultIds));
+                }               
+            }
+            await done();
           }
-
-          : {},
-      );
-      const page = await browser.newPage();
-      await page.setJavaScriptEnabled(false);
-      await page.goto(props.link);
-      const table = await page.evaluate(() => document.getElementById('datatable-list').innerHTML);
-      const mount = `<table>${table}</table>`;
-
-      // html to json
-      const json = await HtmlTableToJson.parse(mount);
-      const result = await json._results[0].reverse();
-
-      //--
-      const arrayIdSort = [];
-      const resultIds = [];
+        });
       if (props.type === 'movie') {
-        result.map((x) => {
-          arrayIdSort.push({
-            id: x.IMDB,
-            date: +x['Data de publicação'].slice(0, 4),
-          });
-          return false;
-        });
-        const resultFilter = arrayIdSort
-          .filter((x) => x.date >= 2021)
-          .filter((x) => x !== false);
-        resultFilter.map((x) => resultIds.push(x.id));
-
-        fs.writeFileSync('./data/ids_movie.json', JSON.stringify(resultIds));
+      c.queue('https://embed.uauflix.online/admin/todos-filmes')
       }
-      //--
       if (props.type === 'tv') {
-        result.map((x) => {
-          arrayIdSort.push({
-            id: x['ID - THEMOVIEDB'],
-            date: +x['Última atualização'].slice(0, 4),
-          });
-          return false;
-        });
-        const resultFilter = arrayIdSort
-          .filter((x) => x.date >= 2019)
-          .filter((x) => x !== false);
-        resultFilter.map((x) => resultIds.push(x.id));
-        fs.writeFileSync('./data/ids_tv.json', JSON.stringify(resultIds));
+        c.queue('https://embed.uauflix.online/admin/todas-series')
       }
-      await browser.close();
       return resultIds;
     };
 
-    // response
+
 
     res.status(200).json({
       search_movie: await search({

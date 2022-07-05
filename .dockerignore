@@ -1,4 +1,4 @@
+node_modules/
 docker-compose.yaml
 Dockerfile
 .dockgerignore
-package-lock.json
