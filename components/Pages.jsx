@@ -4,30 +4,30 @@ import styles from '../styles/cards.module.css';
 import LastView from './Last_view';
 import HeaderButtons from './Header';
 
-const Pages = function Pages({ data, type }) {
+const Pages = function Pages({ dataGenres, type }) {
   const [useData, setData] = useState(false);
   const [useBackGround, setBackGround] = useState(null);
 
   const start = async () => {
     // Buscar
-    setData(data);
+    setData(dataGenres);
 
     const storage = localStorage.getItem(`lastView_${type}`);
     if (storage) {
-      const [[filter]] = data.map((x) => x.filter((y) => y.imdb_id === storage))
+      const [[filter]] = dataGenres.map((x) => x.filter((y) => y.imdb_id === storage))
         .filter((x) => x.length > 0);
       setBackGround(filter);
     } else {
-      setBackGround(data[0][0]);
+      setBackGround(dataGenres[0][0]);
     }
   };
   const search = (e) => {
     const props = e;
     if (props === '') {
-      setData(data);
+      setData(dataGenres);
     } else {
       const array = [];
-      const filter = data.forEach((y) => {
+      const filter = dataGenres.forEach((y) => {
         const a = y.filter((x) => x.title.toLowerCase().includes(props.toLowerCase()));
         if (a.length > 0) {
           a.forEach((x) => array.push({ ...x, genres: 'Results' }));

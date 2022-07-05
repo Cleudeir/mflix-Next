@@ -2,7 +2,6 @@
 export default async function RequestInfo({ id, type }) {
   const API_KEY = '5417af578f487448df0d4932bc0cc1a5';
   const API_BASE = 'https://api.themoviedb.org/3';
-
   const search = await fetch(`${API_BASE}/${type}/${id}?api_key=${API_KEY}`)
     .then((response) => response.json())
     .then((data) => data)

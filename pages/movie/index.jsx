@@ -2,24 +2,41 @@ import Filters from '../../components/Filters';
 import Pages from '../../components/Pages';
 
 export async function getStaticProps(context) {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
+
   const type = 'movie';
-  const { dataGenres } = await Filters({ type });
-  const data = dataGenres;
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
+  const crawling = await fetch(`http://localhost:3000/api/crawling`,
+  {
+    method: "POST",
+    body: type
+  })
+      .then((resp) => resp.json())
+      .then((data) => data)
+      .catch((error) => error);
+  
+  const library = await fetch(`http://localhost:3000/api/themoviedb`,
+  {
+    method: "POST",
+    body: JSON.stringify({library:crawling, type})
+  })
+      .then((resp) => resp.json())
+      .then((data) => data)
+      .catch((error) => error);
+
+  const { dataGenres } = await Filters({library});
+
   return {
     props: {
-      data,
+      dataGenres,
       type,
     },
-    revalidate: 24 * 60 * 60,
+    revalidate: 7 * 24 * 60 * 60,
   };
+
 }
-const Movies = function Movies({ data, type }) {
+const Movies = function Movies({ dataGenres, type }) {
+  console.log(dataGenres)
   return (
-    <Pages type={type} data={data} />
+    <Pages type={type} dataGenres={dataGenres} />
   );
 };
 

@@ -1,17 +1,6 @@
-async function Filters({ type }) {
-  // library get
-  let library = '';
-  if (type === 'movie') {
-    library = require('../data/data_movie.json');
-  }
-
-  if (type === 'tv') {
-    library = require('../data/data_tv.json');
-  }
-
+async function Filters({library}) {
   //--
-  const get = library;
-  const data = get;
+  const data = library;
   //--
   // Criar Array com gêneros
   const genresSingle = new Set();
