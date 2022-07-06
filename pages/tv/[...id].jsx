@@ -14,44 +14,41 @@ export default function PlayTv() {
   const [useServer, setIndex] = useState(0);
 
   useEffect(() => {
-    if (id) {     
-    const [idImdb, stringSeasons] = id;
-    const arraySeasons = stringSeasons.split(",")
-    localStorage.setItem('lastView_tv', idImdb);
-    setId(idImdb);
-    
-    const storage = localStorage.getItem(idImdb);
+    if (id) {
+      const [idImdb, stringSeasons] = id;
+      const arraySeasons = stringSeasons.split(',');
+      localStorage.setItem('lastView_tv', idImdb);
+      setId(idImdb);
+
+      const storage = localStorage.getItem(idImdb);
       if (storage) {
         setEp(+storage);
       }
-    console.log(arraySeasons)    
 
-    const seasonsNames = [];
-    for (let i = 0; i < arraySeasons.length; i += 1) {
-      for (let j = 0; j < arraySeasons[i]; j += 1) {
-        let name1;
-        let name2;
-        if (i < 9) {
-          name1 = `S0${i + 1}`;
-        } else {
-          name1 = `S${i + 1}`;
+      const seasonsNames = [];
+      for (let i = 0; i < arraySeasons.length; i += 1) {
+        for (let j = 0; j < arraySeasons[i]; j += 1) {
+          let name1;
+          let name2;
+          if (i < 9) {
+            name1 = `S0${i + 1}`;
+          } else {
+            name1 = `S${i + 1}`;
+          }
+          if (j < 9) {
+            name2 = ` - EP0${j + 1}`;
+          } else {
+            name2 = ` - EP${j + 1}`;
+          }
+          seasonsNames.push({
+            name: name1 + name2,
+            id: `${i + 1}/${j + 1}`,
+          });
         }
-        if (j < 9) {
-          name2 = ` - EP0${j + 1}`;
-        } else {
-          name2 = ` - EP${j + 1}`;
-        }
-        seasonsNames.push({
-          name: name1 + name2,
-          id: `${i + 1}/${j + 1}`,
-        });
       }
+      setSeasons(seasonsNames);
     }
-    setSeasons(seasonsNames);
-    }
-    
   }, [id]);
-
 
   return (
 
@@ -61,8 +58,8 @@ export default function PlayTv() {
           <a href="replace" style={{ width: '75px' }} className="myButton">
             Home
           </a>
-        </Link>     
-        
+        </Link>
+
         {useSeasons && (
           <select
             className="myButton"
@@ -125,4 +122,4 @@ export default function PlayTv() {
       )}
     </div>
   );
-};
+}

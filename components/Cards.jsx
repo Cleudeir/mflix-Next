@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/cards.module.css';
 
+// eslint-disable-next-line react/prop-types
 const Card = function Card({ data, type, setBackGround }) {
   const Url = (x) => {
     let url;
