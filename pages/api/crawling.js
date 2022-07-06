@@ -47,17 +47,15 @@ function Crawling(req, resp) {
 						.filter((x) => x !== false);
 					resultFilter.map((x) => resultIds.push(x.id));                  
 				}      
-				resp.status(200).json(resultIds.slice(0, 500));          
+				resp.status(200).json(resultIds.slice(0, 50));          
 		}
 	}
 	});
 	if (type === 'movie') {
 	c.queue('https://embed.uauflix.online/admin/todos-filmes')
-	console.log('type',type)
 	}
 	if (type === 'tv') {
 	c.queue('https://embed.uauflix.online/admin/todas-series')
-	console.log('type',type)
 	}
 }
 

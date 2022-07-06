@@ -22,6 +22,7 @@ export async function getStaticProps(context) {
       .then((data) => data)
       .catch((error) => error);
   const { dataGenres } = await Filters({library});
+  console.log(dataGenres[0][0].seasons)
 
   return {
     props: {
@@ -33,7 +34,6 @@ export async function getStaticProps(context) {
   
 }
 const Tv = function Tv({ dataGenres, type }) {
-  console.log(dataGenres)
   return (
     <Pages type={type} dataGenres={dataGenres} />
   );

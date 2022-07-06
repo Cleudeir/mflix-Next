@@ -10,7 +10,7 @@ const Card = function Card({ data, type, setBackGround }) {
       return url;
     }
     if (type === 'tv') {
-      url = `/${type}/${x.imdb_id}`;
+      url = `/${type}/${x.imdb_id}/${x.seasons}`;
       return url;
     }
     return false;

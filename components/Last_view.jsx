@@ -27,7 +27,7 @@ const LastView = function LastView({ data, type }) {
               {data.overview.slice(0, 250)}
               ...
             </p>
-            <Link href={`/${type}/${data.imdb_id}`}>
+            <Link href={`/${type}/${data.imdb_id}/${data.seasons}`}>
               <a href="replace" style={{ width: '75px' }} className="myButton">
                 Play
               </a>

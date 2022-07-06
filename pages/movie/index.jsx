@@ -23,8 +23,7 @@ export async function getStaticProps(context) {
       .catch((error) => error);
 
   const { dataGenres } = await Filters({library});
-
-  return {
+  return {  
     props: {
       dataGenres,
       type,
@@ -34,7 +33,6 @@ export async function getStaticProps(context) {
 
 }
 const Movies = function Movies({ dataGenres, type }) {
-  console.log(dataGenres)
   return (
     <Pages type={type} dataGenres={dataGenres} />
   );

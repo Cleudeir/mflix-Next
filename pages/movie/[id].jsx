@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import Styles from '../../styles/video.module.css';
 
-const Play = function Play() {
+export default function PlayMovie() {
   const router = useRouter();
   const { id } = router.query;
   const [baseUrl] = useState(
@@ -51,5 +51,3 @@ const Play = function Play() {
 
   );
 };
-
-export default Play;
