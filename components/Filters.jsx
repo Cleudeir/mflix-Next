@@ -21,7 +21,7 @@ async function Filters({ library }) {
   genres = ['Release', ...genres];
   const New = [];
 
-  data.slice(0, 30).forEach((x) => (New.push({ ...x, genres: 'New' })));
+  data.slice(0, 30).map((x) => (New.push({ ...x, genres: 'New' })));
   dataGenres = [New, ...dataGenres];
   //--
   const obj = { data, genres, dataGenres };

@@ -4,10 +4,14 @@ import Pages from '../../components/Pages';
 export async function getStaticProps(context) {
   const type = 'tv';
   const crawling = await fetch(
-    'http://localhost:3000/api/crawling',
+    'http://localhost:3333/crawling',
     {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
       method: 'POST',
-      body: type,
+      body: JSON.stringify({ type }),
     },
   )
     .then((resp) => resp.json())
@@ -15,8 +19,12 @@ export async function getStaticProps(context) {
     .catch((error) => error);
 
   const library = await fetch(
-    'http://localhost:3000/api/themoviedb',
+    'http://localhost:3333/themoviedb',
     {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
       method: 'POST',
       body: JSON.stringify({ library: crawling, type }),
     },
