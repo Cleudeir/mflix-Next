@@ -1,10 +1,10 @@
-import Filters from '../../components/Filters';
+import Filters from '../../modules/Filters';
 import Pages from '../../components/Pages';
 
 export async function getStaticProps(context) {
   const type = 'movie';
   const crawling = await fetch(
-    'http://localhost:3333/crawling',
+    `${process.env.URL}/crawling`,
     {
       headers: {
         Accept: 'application/json',
@@ -19,7 +19,7 @@ export async function getStaticProps(context) {
     .catch((error) => error);
 
   const library = await fetch(
-    'http://localhost:3333/themoviedb',
+    `${process.env.URL}/themoviedb`,
     {
       headers: {
         Accept: 'application/json',
