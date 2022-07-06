@@ -1,4 +1,4 @@
-async function Filters({library}) {
+async function Filters({ library }) {
   //--
   const data = library;
   //--
