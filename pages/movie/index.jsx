@@ -3,8 +3,9 @@ import Pages from '../../components/Pages';
 
 export async function getStaticProps(context) {
   const type = 'movie';
+  console.log(`${process.env.URL}/crawling`);
   const crawling = await fetch(
-    `${process.env.URL}/crawling`,
+    'https://mflixbackend.herokuapp.com/crawling',
     {
       headers: {
         Accept: 'application/json',
@@ -19,7 +20,7 @@ export async function getStaticProps(context) {
     .catch((error) => error);
 
   const library = await fetch(
-    `${process.env.URL}/themoviedb`,
+    'https://mflixbackend.herokuapp.com/themoviedb',
     {
       headers: {
         Accept: 'application/json',
