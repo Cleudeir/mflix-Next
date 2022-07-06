@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-lone-blocks
 {
-    swcMinify: false // it should be false by default 
+  // eslint-disable-next-line no-unused-expressions
+  false; // it should be false by default
 }
