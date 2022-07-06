@@ -10,20 +10,20 @@ export default function PlayTv() {
   const [baseUrl] = useState(['https://player.uauflix.online/tv']);
   const [useId, setId] = useState(false);
   const [useSeasons, setSeasons] = useState(false);
-  const [useEp, setEp] = useState(0);
+  const [useEp, setEp] = useState(false);
   const [useServer, setIndex] = useState(0);
 
   useEffect(() => {
     if (id) {
-      const [idImdb, stringSeasons] = id;
+      const [stringSeasons, idImdb, seasonLink, epLink] = id;
+      if (!seasonLink || !epLink) {
+        const urlRef = document.location.href.split('/');
+        document.location.href = `${urlRef.slice(0, 6).join('/')}/1/1`;
+      }
+
       const arraySeasons = stringSeasons.split(',');
       localStorage.setItem('lastView_tv', idImdb);
       setId(idImdb);
-
-      const storage = localStorage.getItem(idImdb);
-      if (storage) {
-        setEp(+storage);
-      }
 
       const seasonsNames = [];
       for (let i = 0; i < arraySeasons.length; i += 1) {
@@ -47,25 +47,41 @@ export default function PlayTv() {
         }
       }
       setSeasons(seasonsNames);
+
+      if (seasonLink && epLink) {
+        const epsodeValue = `${seasonLink}/${epLink}`;
+        const filterIndex = seasonsNames.findIndex(
+          (i) => i.id === epsodeValue,
+        );
+        setEp(filterIndex);
+        localStorage.setItem(useId, filterIndex);
+      } else {
+        const storage = localStorage.getItem(idImdb);
+        if (storage) {
+          setEp(+storage);
+        }
+      }
     }
   }, [id]);
 
   return (
 
     <div className={Styles.container}>
-      <div className={Styles.header}>
-        <Link href="/tv">
-          <a href="replace" style={{ width: '75px' }} className="myButton">
-            Home
-          </a>
-        </Link>
+      {useSeasons && (
+        <div className={Styles.header}>
+          <Link href="/tv">
+            <a href="replace" style={{ width: '75px' }} className="myButton">
+              Home
+            </a>
+          </Link>
 
-        {useSeasons && (
           <select
             className="myButton"
             name="name"
             value={useSeasons[useEp].id}
             onChange={(e) => {
+              const urlRef = document.location.href.split('/');
+              document.location.href = `${urlRef.slice(0, 6).join('/')}/${e.target.value}`;
               const filterIndex = useSeasons.findIndex(
                 (i) => i.id === e.target.value,
               );
@@ -79,33 +95,37 @@ export default function PlayTv() {
               </option>
             ))}
           </select>
-        )}
-        <button
-          type="button"
-          className="myButton"
-          onClick={() => {
-            if (useEp > 0) {
-              setEp(useEp - 1);
-              localStorage.setItem(useId, useEp - 1);
-            }
-          }}
-        >
-          Back
-        </button>
-        <button
-          type="button"
-          className="myButton"
-          onClick={() => {
-            if (useEp < useSeasons.length - 1) {
-              setEp(useEp + 1);
-              localStorage.setItem(useId, useEp + 1);
-            }
-          }}
-        >
-          Next
-        </button>
-      </div>
 
+          <button
+            type="button"
+            className="myButton"
+            onClick={() => {
+              if (useEp > 0) {
+                const urlRef = document.location.href.split('/');
+                document.location.href = `${urlRef.slice(0, 6).join('/')}/${useSeasons[useEp - 1].id}`;
+                setEp(useEp - 1);
+                localStorage.setItem(useId, useEp - 1);
+              }
+            }}
+          >
+            Back
+          </button>
+          <button
+            type="button"
+            className="myButton"
+            onClick={() => {
+              if (useEp < useSeasons.length - 1) {
+                const urlRef = document.location.href.split('/');
+                document.location.href = `${urlRef.slice(0, 6).join('/')}/${useSeasons[useEp + 1].id}`;
+                setEp(useEp + 1);
+                localStorage.setItem(useId, useEp + 1);
+              }
+            }}
+          >
+            Next
+          </button>
+        </div>
+      ) }
       {useId && useSeasons && (
         <iframe
           className={Styles.iframe}
