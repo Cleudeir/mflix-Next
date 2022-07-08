@@ -1,40 +1,9 @@
-import Filters from '../../modules/Filters';
 import Pages from '../../components/Pages';
+import GetInfo from '../../modules/GetInfo';
 
 export async function getStaticProps(context) {
   const type = 'tv';
-  const crawling = await fetch(
-    'https://mflixbackend.herokuapp.com/crawling',
-    {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify({ type }),
-    },
-  )
-    .then((resp) => resp.json())
-    .then((data) => data)
-    .catch((error) => error);
-
-  const library = await fetch(
-    'https://mflixbackend.herokuapp.com/themoviedb',
-    {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify({ library: crawling, type }),
-    },
-  )
-    .then((resp) => resp.json())
-    .then((data) => data)
-    .catch((error) => error);
-
-  const { dataGenres } = await Filters({ library });
-
+  const dataGenres = await GetInfo({ type });
   return {
     props: {
       dataGenres,
