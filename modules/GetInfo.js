@@ -7,7 +7,6 @@ export default async function GetInfo({ type }) {
   } catch (error) {
     url = 'https://mflixbackend.herokuapp.com';
   }
-  console.log(url);
   const responseCrawling = await fetch(
     `${url}/crawling`,
     {

@@ -8,24 +8,27 @@
     background-position: 50% 15%;
     margin-bottom: -10vh;
     margin-top: -51px;
-    min-height: 500px;
 }
 .Vertical{
     width: inherit;
     height: inherit;
-    min-height: 500px;
     background: linear-gradient(to top, var(--cor-02) 10%, transparent 90%);
 }
 
 
 @media screen and (max-width: 600px) {
     .background{
-        height: 70vh;
-       
+        min-height: 70vh;       
+    }
+    .Vertical{
+        min-height: 70vh;   
     }
   }
 @media screen and (min-width: 600px) {
     .background{
-        height: 70vh;
+        min-height: 70vh;
+    }
+    .Vertical{
+        min-height: 70vh;   
     }
   }

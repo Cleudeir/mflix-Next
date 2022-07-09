@@ -49,20 +49,21 @@ a {
     background-clip: padding-box; 
  
   }
-  @media screen and (max-width: 600px) and (orientation: landscape){
-    *::-webkit-scrollbar {
-      height: 1px;
-    }
-  }
-
+  
   *::-webkit-scrollbar-thumb {
     background-color: var(--cor-01);
     border-radius: 10px;
     border: 1px solid #ffffff;
     border-radius: 8px;
     background-clip: padding-box;  
-   
   }
+
+  @media screen and (max-width: 480px) and (orientation: portrait){
+    *::-webkit-scrollbar {
+      height: 1px;
+    }
+  }
+
   h1 {
     padding-left: 10px;
   }

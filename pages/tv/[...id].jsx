@@ -67,78 +67,80 @@ export default function PlayTv() {
   return (
 
     <div className={Styles.container}>
-      {useSeasons && (
-        <div className={Styles.header}>
-          <Link href="/tv">
-            <a href="replace" style={{ width: '75px' }} className="myButton">
-              Home
-            </a>
-          </Link>
-
-          <select
-            className="myButton"
-            name="name"
-            value={useSeasons[useEp].id}
-            onChange={(e) => {
-              const urlRef = document.location.href.split('/');
-              document.location.href = `${urlRef.slice(0, 6).join('/')}/${e.target.value}`;
-              const filterIndex = useSeasons.findIndex(
-                (i) => i.id === e.target.value,
-              );
-              setEp(filterIndex);
-              localStorage.setItem(useId, filterIndex);
-            }}
-          >
-            {useSeasons.map((x, i) => (
-              <option Key={x.id + i} value={x.id}>
-                {x.name}
-              </option>
-            ))}
-          </select>
-
-          <button
-            type="button"
-            className="myButton"
-            onClick={() => {
-              if (useEp > 0) {
+      {useSeasons && useId && (
+        <div>
+          <div className={Styles.header}>
+            <Link href="/tv">
+              <a href="replace" style={{ width: '75px' }} className="myButton">
+                Home
+              </a>
+            </Link>
+            <select
+              className="myButton"
+              name="name"
+              value={useSeasons[useEp].id}
+              onChange={(e) => {
                 const urlRef = document.location.href.split('/');
-                document.location.href = `${urlRef.slice(0, 6).join('/')}/${useSeasons[useEp - 1].id}`;
-                setEp(useEp - 1);
-                localStorage.setItem(useId, useEp - 1);
-              }
-            }}
-          >
-            Back
-          </button>
-          <button
-            type="button"
-            className="myButton"
-            onClick={() => {
-              if (useEp < useSeasons.length - 1) {
-                const urlRef = document.location.href.split('/');
-                document.location.href = `${urlRef.slice(0, 6).join('/')}/${useSeasons[useEp + 1].id}`;
-                setEp(useEp + 1);
-                localStorage.setItem(useId, useEp + 1);
-              }
-            }}
-          >
-            Next
-          </button>
+                document.location.href = `${urlRef.slice(0, 6).join('/')}/${e.target.value}`;
+                const filterIndex = useSeasons.findIndex(
+                  (i) => i.id === e.target.value,
+                );
+                setEp(filterIndex);
+                localStorage.setItem(useId, filterIndex);
+              }}
+            >
+              {useSeasons.map((x, i) => (
+                <option Key={x.id + i} value={x.id}>
+                  {x.name}
+                </option>
+              ))}
+            </select>
+
+            <button
+              type="button"
+              className="myButton"
+              onClick={() => {
+                if (useEp > 0) {
+                  const urlRef = document.location.href.split('/');
+                  document.location.href = `${urlRef.slice(0, 6).join('/')}/${useSeasons[useEp - 1].id}`;
+                  setEp(useEp - 1);
+                  localStorage.setItem(useId, useEp - 1);
+                }
+              }}
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              className="myButton"
+              onClick={() => {
+                if (useEp < useSeasons.length - 1) {
+                  const urlRef = document.location.href.split('/');
+                  document.location.href = `${urlRef.slice(0, 6).join('/')}/${useSeasons[useEp + 1].id}`;
+                  setEp(useEp + 1);
+                  localStorage.setItem(useId, useEp + 1);
+                }
+              }}
+            >
+              Next
+            </button>
+          </div>
+          <iframe
+            className={Styles.iframe}
+            autoPlay
+            allow="autoplay; encrypted-media;"
+            preload="auto"
+            sandbox="allow-scripts  allow-same-origin"
+            title="Mflix"
+            allowFullScreen
+            scrolling="no"
+            frameBorder="0"
+            src={`${baseUrl[useServer]}/${useId}/${useSeasons[useEp].id}/dub`}
+          />
         </div>
-      ) }
-      {useId && useSeasons && (
-        <iframe
-          className={Styles.iframe}
-          autoPlay
-          allow="autoplay; encrypted-media;"
-          preload="auto"
-          sandbox="allow-scripts  allow-same-origin"
-          title="Mflix"
-          allowFullScreen
-          scrolling="no"
-          frameBorder="0"
-          src={`${baseUrl[useServer]}/${useId}/${useSeasons[useEp].id}/dub`}
-        />
+      )}
+      {!useSeasons && !useId && (
+        <div className={Styles.iframe} />
       )}
     </div>
   );
