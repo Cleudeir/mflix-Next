@@ -10,7 +10,6 @@ const Home = function Home() {
     }
     localStorage.clear();
   });
-
   return (
     <div>
       <Head>
