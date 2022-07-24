@@ -7,28 +7,19 @@ export default async function GetInfo({ type }) {
   } catch (error) {
     url = 'https://mflixbackend.herokuapp.com';
   }
-  const responseCrawling = await fetch(
-    `${url}/crawling`,
-    {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify({ type }),
-    },
-  );
 
-  const jsonCrawling = await responseCrawling.json();
+  const baseUrl = 'https://redecanais.to';
+  const range = 5;
+
   const responseLibrary = await fetch(
-    `${url}/themoviedb`,
+    `${url}/list`,
     {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       method: 'POST',
-      body: JSON.stringify({ library: jsonCrawling, type }),
+      body: JSON.stringify({ baseUrl, type, range }),
     },
   );
 

@@ -7,7 +7,12 @@ const Card = function Card({ data, type, setBackGround }) {
   const Url = (x) => {
     let url;
     if (type === 'movie') {
-      url = `/${type}/${x.imdb_id}`;
+      if (x.url !== null) {
+        url = `/${type}/${x.imdb_id}/${x.url}`;
+      } else {
+        url = `/${type}/${x.imdb_id}`;
+      }
+
       return url;
     }
     if (type === 'tv') {
